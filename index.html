@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Caspian Motors Clinic — gəmi mühərrikləri və dəniz texniki sistemləri üçün peşəkar təmir və servis xidmətləri.">
+  <title>Caspian Motors Clinic | Marine Solutions</title>
+  <style>
+    :root {
+      --navy: #062e5a;
+      --navy-deep: #031d3d;
+      --blue: #0c5fa7;
+      --cyan: #60c8e8;
+      --ink: #102035;
+      --muted: #637187;
+      --line: #dbe5ef;
+      --soft: #f4f8fc;
+      --white: #fff;
+      --max-width: 1180px;
+      --shadow: 0 18px 50px rgba(4, 37, 76, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(calc(100% - 40px), var(--max-width)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 14px;
+      color: var(--blue);
+      font-size: .73rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 26px; height: 2px; content: ""; background: currentColor; }
+    .section-heading { max-width: 700px; }
+    .section-heading h2, .split-copy h2, .cta-copy h2 {
+      margin: 0;
+      color: var(--navy-deep);
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.09;
+      letter-spacing: -.045em;
+    }
+    .section-heading > p, .split-copy > p, .cta-copy > p { color: var(--muted); font-size: 1.02rem; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 49px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-size: .88rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(4, 34, 71, .18); }
+    .button-primary { color: var(--white); background: var(--blue); }
+    .button-light { color: var(--navy); background: var(--white); }
+    .button-outline { color: var(--white); border-color: rgba(255,255,255,.5); }
+    .button svg { width: 16px; height: 16px; }
+
+    .topline { height: 5px; background: linear-gradient(90deg, #0a4f92, #57c9ea 55%, #0a4f92); }
+    .site-header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.95); border-bottom: 1px solid rgba(5,45,88,.08); backdrop-filter: blur(16px); }
+    .header-content { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; min-width: max-content; }
+    .brand-mark { position: relative; display: grid; width: 39px; height: 39px; place-items: center; overflow: hidden; color: #fff; background: var(--navy); border-radius: 50%; box-shadow: inset 0 0 0 4px #dfeff8; }
+    .brand-mark::after { position: absolute; right: -6px; bottom: 6px; width: 28px; height: 7px; content: ""; border-top: 2px solid #64cfeb; border-radius: 50%; transform: rotate(-14deg); }
+    .brand-mark svg { width: 23px; height: 23px; }
+    .brand-text { display: grid; line-height: 1; }
+    .brand-text strong { color: var(--navy); font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; font-style: italic; letter-spacing: -.04em; }
+    .brand-text span { margin-top: 4px; color: var(--blue); font-size: .54rem; font-weight: 800; letter-spacing: .21em; text-transform: uppercase; }
+    .site-nav { display: flex; align-items: center; gap: 26px; }
+    .site-nav a { color: #31445d; font-size: .84rem; font-weight: 750; transition: color .2s; }
+    .site-nav a:hover, .site-nav a:focus-visible { color: var(--blue); }
+    .header-action { min-height: 40px; padding: 0 16px; font-size: .77rem; }
+    .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; color: var(--navy); background: transparent; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }
+    .menu-toggle svg { width: 20px; }
+
+    .hero { position: relative; min-height: 670px; overflow: hidden; color: white; background: var(--navy-deep); isolation: isolate; }
+    .hero::before { position: absolute; inset: 0; z-index: -2; content: ""; background: url("assets/image1.png") 67% 35% / cover no-repeat; opacity: .87; filter: saturate(.85) contrast(1.04); }
+    .hero::after { position: absolute; inset: 0; z-index: -1; content: ""; background: linear-gradient(90deg, rgba(3, 26, 54, .97) 0%, rgba(3, 33, 67, .89) 39%, rgba(3, 34, 70, .44) 66%, rgba(3, 29, 59, .38) 100%); }
+    .hero-content { display: flex; align-items: center; min-height: 670px; padding: 85px 0 120px; }
+    .hero-copy { max-width: 715px; }
+    .hero .eyebrow { color: #9be7fb; }
+    .hero h1 { max-width: 690px; margin: 0; font-size: clamp(2.9rem, 6vw, 5.45rem); line-height: .98; letter-spacing: -.065em; }
+    .hero h1 em { color: #91e2fa; font-family: Georgia, "Times New Roman", serif; font-weight: 500; }
+    .hero-copy > p { max-width: 570px; margin: 25px 0 31px; color: #d7e8f4; font-size: clamp(1rem, 1.8vw, 1.16rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .trust-strip { position: absolute; right: 0; bottom: 0; left: 0; border-top: 1px solid rgba(255,255,255,.25); background: rgba(2, 24, 51, .75); }
+    .trust-items { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .trust-item { display: flex; align-items: center; gap: 13px; min-height: 88px; padding: 17px 20px; border-right: 1px solid rgba(255,255,255,.18); }
+    .trust-item:last-child { border-right: 0; }
+    .trust-item svg { flex: 0 0 auto; width: 28px; height: 28px; color: #7dddf6; }
+    .trust-item strong { display: block; color: #fff; font-size: .79rem; letter-spacing: .04em; text-transform: uppercase; }
+    .trust-item span { display: block; margin-top: 2px; color: #b9d1e2; font-size: .77rem; }
+
+    .intro { padding: 115px 0; }
+    .intro-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: clamp(45px, 7vw, 104px); align-items: center; }
+    .photo-composition { position: relative; padding: 0 42px 42px 0; }
+    .photo-composition > img { width: 100%; height: 515px; object-fit: cover; object-position: center; border-radius: 2px; box-shadow: var(--shadow); }
+    .photo-accent { position: absolute; right: 0; bottom: 0; width: 43%; padding: 25px 22px; color: #fff; background: var(--navy); box-shadow: var(--shadow); }
+    .photo-accent .year { display: block; color: #7dddf6; font-size: 2.2rem; font-weight: 850; letter-spacing: -.05em; }
+    .photo-accent span:last-child { display: block; max-width: 160px; margin-top: 4px; font-size: .83rem; line-height: 1.4; }
+    .split-copy { max-width: 570px; }
+    .split-copy h2 { margin-bottom: 22px; }
+    .split-copy > p { margin: 0 0 17px; }
+    .checklist { display: grid; gap: 11px; margin: 27px 0 32px; padding: 0; list-style: none; }
+    .checklist li { display: flex; align-items: flex-start; gap: 11px; color: #354961; font-size: .93rem; }
+    .checklist svg { flex: 0 0 auto; width: 19px; height: 19px; margin-top: 2px; color: var(--blue); }
+
+    .services { padding: 110px 0; background: var(--soft); }
+    .section-top { display: flex; justify-content: space-between; gap: 32px; align-items: end; margin-bottom: 40px; }
+    .section-top .section-heading > p { margin: 16px 0 0; }
+    .services-note { max-width: 235px; padding-left: 20px; color: var(--muted); border-left: 2px solid var(--cyan); font-size: .86rem; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 21px; }
+    .service-card { position: relative; min-height: 445px; overflow: hidden; color: #fff; background: var(--navy); }
+    .service-card img { width: 100%; height: 100%; object-fit: cover; opacity: .78; transition: transform .5s ease; }
+    .service-card:hover img { transform: scale(1.05); }
+    .service-card::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, rgba(1,25,53,.02) 20%, rgba(2,25,51,.96) 92%); }
+    .service-card-content { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; padding: 28px; }
+    .service-number { display: block; margin-bottom: 50px; color: #8be2fa; font-size: .76rem; font-weight: 800; letter-spacing: .14em; }
+    .service-card h3 { max-width: 250px; margin: 0 0 10px; font-size: 1.43rem; line-height: 1.15; letter-spacing: -.03em; }
+    .service-card p { margin: 0; color: #d3e6f2; font-size: .87rem; line-height: 1.55; }
+    .services-footnote { margin: 26px 0 0; color: var(--muted); font-size: .84rem; }
+
+    .principles { padding: 112px 0; }
+    .principles .section-heading > p { margin: 16px 0 0; }
+    .principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 46px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .principle { min-height: 262px; padding: 29px 32px 30px 0; border-right: 1px solid var(--line); }
+    .principle:not(:first-child) { padding-left: 32px; }
+    .principle:last-child { border-right: 0; }
+    .principle-index { display: block; margin-bottom: 42px; color: var(--blue); font-size: .74rem; font-weight: 850; letter-spacing: .13em; }
+    .principle h3 { margin: 0 0 11px; color: var(--navy); font-size: 1.1rem; line-height: 1.25; }
+    .principle p { max-width: 300px; margin: 0; color: var(--muted); font-size: .88rem; }
+
+    .capabilities { padding: 120px 0; }
+    .capabilities-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: clamp(45px, 8vw, 105px); align-items: start; }
+    .capability-panel { position: sticky; top: 108px; }
+    .capability-panel > p:last-of-type { margin: 17px 0 29px; color: var(--muted); }
+    .capability-photo { position: relative; height: 265px; overflow: hidden; margin-top: 34px; }
+    .capability-photo::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(3,32,65,.2), transparent); }
+    .capability-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .capability-list { border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 24px 0; color: var(--navy); font-size: 1.1rem; font-weight: 800; cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { flex: 0 0 auto; width: 27px; height: 27px; content: "+"; color: var(--blue); border: 1px solid #c6d7e5; border-radius: 50%; font-size: 1.3rem; font-weight: 400; line-height: 24px; text-align: center; transition: transform .25s ease; }
+    details[open] summary::after { transform: rotate(45deg); color: white; background: var(--blue); border-color: var(--blue); }
+    details p { max-width: 620px; margin: -3px 54px 25px 0; color: var(--muted); font-size: .93rem; }
+
+    .safety { position: relative; overflow: hidden; padding: 112px 0; color: #fff; background: var(--navy-deep); }
+    .safety::before { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(2,26,54,.96) 0%, rgba(2,30,60,.85) 45%, rgba(2,26,54,.62)), url("assets/image4.png") 78% 38% / cover no-repeat; }
+    .safety-content { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 75px; align-items: end; }
+    .safety .eyebrow { color: #8ae2fb; }
+    .safety h2 { max-width: 650px; margin: 0; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.04; letter-spacing: -.05em; }
+    .safety h2 span { color: #87ddf6; }
+    .safety-copy { max-width: 490px; margin: 20px 0 0; color: #d2e5f2; }
+    .safety-card { padding: 31px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); border-top: 3px solid #75d9f4; backdrop-filter: blur(7px); }
+    .safety-card svg { width: 36px; height: 36px; color: #84e0f8; }
+    .safety-card h3 { margin: 17px 0 7px; font-size: 1.25rem; }
+    .safety-card p { margin: 0; color: #c3d8e7; font-size: .9rem; }
+
+    .process { padding: 116px 0; }
+    .process .section-heading { margin-bottom: 48px; }
+    .process .section-heading > p { margin-bottom: 0; }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .step { position: relative; padding: 0 26px 0 0; }
+    .step:not(:last-child)::after { position: absolute; top: 19px; right: 0; left: 68px; height: 1px; content: ""; background: #c8d9e7; }
+    .step-number { position: relative; z-index: 1; display: grid; width: 39px; height: 39px; margin-bottom: 22px; place-items: center; color: #fff; background: var(--blue); border: 5px solid #e7f0f6; border-radius: 50%; font-size: .75rem; font-weight: 800; }
+    .step h3 { margin: 0 0 9px; color: var(--navy); font-size: 1rem; }
+    .step p { max-width: 210px; margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
+
+    .statement { padding: 0 0 115px; }
+    .statement-box { position: relative; display: grid; grid-template-columns: 1.12fr .88fr; overflow: hidden; background: #eaf4f9; }
+    .statement-copy { padding: clamp(35px, 6vw, 75px); }
+    .statement-copy .eyebrow { margin-bottom: 11px; }
+    .statement-copy blockquote { max-width: 625px; margin: 0; color: var(--navy); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 3.6vw, 3rem); font-style: italic; line-height: 1.17; letter-spacing: -.035em; }
+    .statement-copy cite { display: block; margin-top: 22px; color: var(--blue); font-family: inherit; font-size: .74rem; font-style: normal; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .statement-image { min-height: 350px; }
+    .statement-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .cta { padding: 88px 0; color: #fff; background: linear-gradient(110deg, var(--navy-deep), var(--blue)); }
+    .cta-grid { display: flex; justify-content: space-between; gap: 35px; align-items: center; }
+    .cta-copy h2 { color: #fff; font-size: clamp(2rem, 4vw, 3.1rem); }
+    .cta-copy > p { max-width: 600px; margin: 13px 0 0; color: #c9e4f0; }
+    .cta-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 12px; }
+    .cta .button-outline { color: #fff; }
+
+    .site-footer { padding: 55px 0 25px; color: #c1d5e5; background: #021932; }
+    .footer-main { display: grid; grid-template-columns: 1.2fr .7fr .9fr; gap: 50px; padding-bottom: 45px; }
+    .footer-brand .brand-text strong { color: #fff; }
+    .footer-brand .brand-text span { color: #83ddf6; }
+    .footer-brand > p { max-width: 340px; margin: 19px 0 0; font-size: .85rem; }
+    .footer-heading { margin: 0 0 15px; color: #fff; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+    .footer-links { display: grid; gap: 8px; }
+    .footer-links a, .footer-contact p { color: #b9cfdf; font-size: .85rem; }
+    .footer-links a:hover { color: #84e0fa; }
+    .footer-contact p { margin: 0 0 8px; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 23px; border-top: 1px solid rgba(255,255,255,.14); color: #839db3; font-size: .74rem; }
+    .footer-bottom a { color: #a8c4d6; }
+
+    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 850px) {
+      .site-nav { position: absolute; top: calc(100% + 1px); right: 0; left: 0; display: grid; gap: 0; padding: 11px 20px 20px; background: rgba(255,255,255,.99); border-bottom: 1px solid var(--line); box-shadow: 0 14px 25px rgba(5,34,68,.1); transform: translateY(-12px); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+      .site-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .site-nav a { padding: 12px 0; border-bottom: 1px solid #edf2f7; }
+      .site-nav .header-action { width: max-content; margin-top: 11px; border-bottom: 0; }
+      .menu-toggle { display: grid; place-items: center; }
+      .header-action { display: none; }
+      .site-nav .header-action { display: inline-flex; }
+      .hero, .hero-content { min-height: 620px; }
+      .intro-grid, .capabilities-grid, .safety-content, .statement-box { grid-template-columns: 1fr; }
+      .intro-grid, .capabilities-grid { gap: 52px; }
+      .capability-panel { position: static; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-card:last-child { grid-column: span 2; }
+      .principle-grid { grid-template-columns: 1fr; }
+      .principle, .principle:not(:first-child) { min-height: 0; padding: 26px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .principle:last-child { border-bottom: 0; }
+      .principle-index { margin-bottom: 14px; }
+      .safety-content { gap: 38px; }
+      .timeline { grid-template-columns: repeat(2, 1fr); gap: 30px 20px; }
+      .step:nth-child(2)::after { display: none; }
+      .step { padding-right: 20px; }
+      .statement-image { min-height: 300px; }
+      .footer-main { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: span 2; }
+    }
+    @media (max-width: 580px) {
+      .container { width: min(calc(100% - 32px), var(--max-width)); }
+      .header-content { height: 67px; }
+      .brand-mark { width: 35px; height: 35px; }
+      .brand-text strong { font-size: 1.1rem; }
+      .hero::before { background-position: 59% 25%; }
+      .hero::after { background: linear-gradient(90deg, rgba(3, 26, 54, .97) 0%, rgba(3, 33, 67, .82) 72%, rgba(3, 29, 59, .56)); }
+      .hero-content { padding: 75px 0 165px; }
+      .hero h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
+      .hero-copy > p { font-size: .96rem; }
+      .trust-items { grid-template-columns: 1fr; }
+      .trust-strip { position: relative; }
+      .trust-item { min-height: auto; padding: 11px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+      .trust-item:last-child { border-bottom: 0; }
+      .trust-strip .container { padding: 13px 0; }
+      .intro, .capabilities, .process { padding: 79px 0; }
+      .services, .safety, .principles { padding: 78px 0; }
+      .photo-composition { padding-right: 23px; padding-bottom: 23px; }
+      .photo-composition > img { height: 410px; }
+      .photo-accent { width: 49%; padding: 18px; }
+      .section-top, .cta-grid { display: block; }
+      .services-note { margin-top: 22px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card, .service-card:last-child { min-height: 385px; grid-column: auto; }
+      .service-card-content { padding: 23px; }
+      .service-number { margin-bottom: 45px; }
+      .capability-photo { height: 220px; }
+      summary { font-size: 1rem; }
+      details p { margin-right: 0; }
+      .timeline { grid-template-columns: 1fr; gap: 28px; }
+      .step::after { display: none; }
+      .step { padding: 0; }
+      .step p { max-width: none; }
+      .statement { padding-bottom: 78px; }
+      .statement-copy { padding: 38px 27px; }
+      .statement-image { min-height: 245px; }
+      .cta { padding: 68px 0; }
+      .cta-actions { margin-top: 25px; }
+      .footer-main { grid-template-columns: 1fr; gap: 31px; }
+      .footer-brand { grid-column: auto; }
+      .footer-bottom { display: grid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="#ana-sehife" aria-label="Caspian Motors Clinic ana səhifə">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 16.5c2.2 0 2.2-1.8 4.4-1.8s2.2 1.8 4.4 1.8 2.2-1.8 4.4-1.8 2.2 1.8 4.4 1.8"/><path d="M12 14V3m0 0 3 3M12 3 9 6"/><path d="M7.5 11.8h9"/></svg>
+        </span>
+        <span class="brand-text"><strong>Caspian Motors Clinic</strong><span>Marine Solutions · MMC</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Menyunu aç" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Əsas naviqasiya">
+        <a href="#haqqimizda">Haqqımızda</a>
+        <a href="#xidmetler">Xidmətlər</a>
+        <a href="#proses">İş prosesimiz</a>
+        <a href="#tehlukesizlik">Təhlükəsizlik</a>
+        <a class="button button-primary header-action" href="#elaqe">Sorğu göndər</a>
+      </nav>
+      <a class="button button-primary header-action" href="#elaqe">Sorğu göndər</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="ana-sehife">
+      <div class="container hero-content">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">Marine solutions · trusted partner</p>
+          <h1>Dənizdə etibarlı <em>güc</em> üçün peşəkar texniki həllər.</h1>
+          <p>Gəmi mühərrikləri, mexaniki sistemlər və dəniz avadanlıqları üzrə dəqiq diaqnostika, əsaslı təmir və operativ servis.</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#xidmetler">Xidmətlərimizi kəşf edin <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+            <a class="button button-outline" href="#haqqimizda">Şirkət profili</a>
+          </div>
+        </div>
+      </div>
+      <div class="trust-strip">
+        <div class="container trust-items">
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4.5 6v5.2c0 4.6 3.2 8.8 7.5 9.8 4.3-1 7.5-5.2 7.5-9.8V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg><div><strong>Etibarlı xidmət</strong><span>Hər layihəyə fərdi yanaşma</span></div></div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 15.8A3.8 3.8 0 1 0 12 8a3.8 3.8 0 0 0 0 7.7Z"/><path d="m19.4 15 .1 2.6-2.3 2.3-2.6-.1-1.8 1.5-1.1 2.3H8.5l-1.1-2.3-1.8-1.5-2.6.1-2.3-2.3.1-2.6L.4 13l1.4-2-.1-2.6 2.3-2.3 2.6.1L8.5 4l1.1-2.3h3.2L13.9 4l1.8 1.5 2.6-.1 2.3 2.3-.1 2.6 1.4 2-1.4 2Z"/></svg><div><strong>Texniki mükəmməllik</strong><span>Peşəkar mühəndis və ustalar</span></div></div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3"/><path d="M5.5 20v-1.4a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5V20"/><path d="M3 19v-1a4 4 0 0 1 3-3.9M21 19v-1a4 4 0 0 0-3-3.9M6.7 5a3 3 0 0 0 0 5.7M17.3 5a3 3 0 0 1 0 5.7"/></svg><div><strong>Müştəri məmnuniyyəti</strong><span>Davamlı tərəfdaşlığa fokus</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="haqqimizda">
+      <div class="container intro-grid">
+        <div class="photo-composition" data-reveal>
+          <img src="assets/image4.png" alt="Caspian Motors Clinic texniki heyəti gəmi yanında">
+          <div class="photo-accent"><span class="year">2003</span><span>ildən peşəkar mühəndislik və təmir təcrübəsi</span></div>
+        </div>
+        <div class="split-copy" data-reveal>
+          <p class="eyebrow">Şirkət profili</p>
+          <h2>Dəniz sənayesində etibarlı texniki tərəfdaşınız.</h2>
+          <p>Şirkətimizin əsası gəmi mühərriklərinin, mexaniki və elektron sistemlərinin təmiri sahəsində peşəkar xidmət göstərmək məqsədilə qoyulub. İlk gündən yüksək dəqiqlik və dərin texniki bilik tələb edən mürəkkəb mühəndislik layihələrində iştirak etmişik.</p>
+          <p>İllər ərzində qazanılan zəngin təcrübə sayəsində fəaliyyətimizi dəniz sənayesinə yönəltmiş, gəmi təmiri sektorunda mövqeyimizi möhkəmləndirmişik.</p>
+          <ul class="checklist">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Baş və köməkçi mühərriklərin cari və əsaslı təmiri</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Mexaniki, elektron və gücötürmə sistemləri üçün kompleks servis</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Beynəlxalq standartlara uyğun təhlükəsiz iş prinsipləri</li>
+          </ul>
+          <a class="button button-primary" href="#proses">Necə işləyirik <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="xidmetler">
+      <div class="container">
+        <div class="section-top" data-reveal>
+          <div class="section-heading">
+            <p class="eyebrow">Xidmət istiqamətləri</p>
+            <h2>Gəminin hər sisteminə peşəkar qayğı.</h2>
+            <p>İstismar yerində və ya emalatxana şəraitində — gəminin dayanma müddətini minimuma endirən kompleks texniki xidmətlər.</p>
+          </div>
+          <p class="services-note">Diaqnostikadan istismara təhvilə qədər işin hər mərhələsini idarə edirik.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card" data-reveal>
+            <img src="assets/image10.png" alt="Gəmi mühərriki">
+            <div class="service-card-content"><span class="service-number">01 / Mühərriklər</span><h3>Baş və köməkçi mühərriklərin servisi</h3><p>Diaqnostika, cari, orta və əsaslı təmir, sınaq və sazlama.</p></div>
+          </article>
+          <article class="service-card" data-reveal>
+            <img src="assets/image9.png" alt="Gəmi mühərrikinin propulsiv sistemi">
+            <div class="service-card-content"><span class="service-number">02 / Gücötürmə</span><h3>Transmissiya və propulsiv sistemlər</h3><p>Reduktor, mufta, val xətləri və digər gücötürmə avadanlıqlarının təmiri.</p></div>
+          </article>
+          <article class="service-card" data-reveal>
+            <img src="assets/image20.png" alt="Gəmi boru xətləri və klapanlar">
+            <div class="service-card-content"><span class="service-number">03 / Sistemlər</span><h3>Boru xətləri və klapan sistemləri</h3><p>Yanacaq, su, yağ, hava və yanğınsöndürmə xətlərinin yenilənməsi və bərpası.</p></div>
+          </article>
+        </div>
+        <p class="services-footnote">Hidravlik sistemlər, CO₂ yanğınsöndürmə avadanlıqları, iqlimləndirmə və çirkab su sistemləri üzrə də texniki xidmət göstəririk.</p>
+      </div>
+    </section>
+
+    <section class="principles">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">Şirkət siyasəti</p>
+          <h2>Keyfiyyəti formalaşdıran dəyişməz prinsiplər.</h2>
+          <p>Rəhbərlikdən texniki heyətə qədər hər bir əməkdaş görülən işlərin yüksək keyfiyyətinə və xidmətlərin davamlı təkmilləşdirilməsinə görə fərdi məsuliyyət daşıyır.</p>
+        </div>
+        <div class="principle-grid" data-reveal>
+          <article class="principle"><span class="principle-index">01 / Dəqiqlik</span><h3>Professional təmir və eksklüziv bərpa</h3><p>Mexanizmlər və mühərrik detallarının təmiri böyük usta təcrübəsi ilə icra olunur, aqreqatlar vizual və funksional olaraq işlək vəziyyətə gətirilir.</p></article>
+          <article class="principle"><span class="principle-index">02 / Etibarlılıq</span><h3>Yalnız orijinal ehtiyat hissələri</h3><p>Dənizdə təhlükəsizliyi və mühərrikin ömrünü qorumaq üçün təmir zamanı sertifikatlı, istehsalçı tərəfindən təsdiqlənmiş hissələrdən istifadə edilir.</p></article>
+          <article class="principle"><span class="principle-index">03 / Operativlik</span><h3>Zamanın idarəolunması və sürət</h3><p>Gəminin yersiz dayanmasının maliyyə itkisi yaratdığını bilirik; işlərimiz operativ, planlı və təhlükəsizlik qaydalarına tam uyğun təşkil olunur.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities">
+      <div class="container capabilities-grid">
+        <div class="capability-panel" data-reveal>
+          <p class="eyebrow">Kompleks imkanlar</p>
+          <div class="section-heading"><h2>Texniki problemləri sistemli həllə çeviririk.</h2></div>
+          <p>Müasir diaqnostika vasitələri, düzgün ehtiyat hissələri və təcrübəli komanda ilə hər bir avadanlığın etibarlı işləməsi üçün çalışırıq.</p>
+          <a class="button button-primary" href="#elaqe">Texniki sorğu göndərin</a>
+          <div class="capability-photo"><img src="assets/image6.png" alt="Təmir üçün mühərrik aqreqatının qaldırılması"></div>
+        </div>
+        <div class="capability-list" data-reveal>
+          <details open><summary>Mühərrik və aqreqatların əsaslı təmiri</summary><p>Krank mili, silindr qolları, porşen, şatun, klapan mexanizmləri və digər əsas komponentlərin defektasiyası, təmiri və zəruri olduqda dəyişdirilməsi həyata keçirilir.</p></details>
+          <details><summary>Hidravlik sistemlərin diaqnostikası</summary><p>Yüksək təzyiqli nasoslar, silindrlər, paylayıcı sistemlər və boru xətləri yoxlanılır; nasazlıqlar və yağ sızmaları aradan qaldırılır, sistem sınaqdan keçirilir.</p></details>
+          <details><summary>CO₂ yanğınsöndürmə sistemləri</summary><p>CO₂ balonları, yüksək təzyiqli boru xətləri, paylayıcı sistemlər və Quick Closing Valve mexanizmləri texniki baxışdan keçirilir, sızdırmazlıq təmin edilir.</p></details>
+          <details><summary>Su, yanacaq və çirkab su xətləri</summary><p>Korroziyaya uğramış və istismar müddətini başa vurmuş borular, flanşlar, klapanlar və digər komponentlər müasir, davamlı həllərlə yenilənir.</p></details>
+          <details><summary>İqlimləndirmə və kondisioner sistemləri</summary><p>Kompressorlar və freon xətləri yoxlanılır, sistem təmizlənir, sızmalar aradan qaldırılır və lazımi həcmdə soyuducu qazla doldurulur.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="safety" id="tehlukesizlik">
+      <div class="container safety-content">
+        <div data-reveal>
+          <p class="eyebrow">HSE standartları</p>
+          <h2>Təhlükəsizlik bizim üçün <span>əsas prioritetdir.</span></h2>
+          <p class="safety-copy">Təmir, montaj və servis işlərimiz beynəlxalq dənizçilik standartlarına, istehsalçı tələblərinə və qüvvədə olan təhlükəsizlik qaydalarına uyğun icra olunur.</p>
+        </div>
+        <div class="safety-card" data-reveal>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4.5 6v5.2c0 4.6 3.2 8.8 7.5 9.8 4.3-1 7.5-5.2 7.5-9.8V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+          <h3>“Sıfır qəza” prinsipi</h3>
+          <p>Hər layihə risklərin qiymətləndirilməsi ilə başlayır. Mütəxəssislərimiz təhlükəsiz iş metodları, müntəzəm təlim və fərdi mühafizə vasitələri ilə ən yüksək HSE standartlarına riayət edir.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="proses">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">İş prosesimiz</p>
+          <h2>Dəqiqliklə planlanan, nəticəyə fokuslanan xidmət.</h2>
+          <p>Nasazlığın ilkin qiymətləndirilməsindən təmir sonrası sınağa qədər şəffaf və idarə olunan proses.</p>
+        </div>
+        <div class="timeline" data-reveal>
+          <article class="step"><span class="step-number">01</span><h3>Diaqnostika</h3><p>Avadanlığın texniki vəziyyəti ətraflı yoxlanılır, problem və ehtiyaclar müəyyən edilir.</p></article>
+          <article class="step"><span class="step-number">02</span><h3>İş planı</h3><p>Təmir həcmi, ehtiyat hissələri və təhlükəsizlik tələbləri əsasında həll formalaşdırılır.</p></article>
+          <article class="step"><span class="step-number">03</span><h3>Təmir və bərpa</h3><p>Peşəkar ustalar işləri planlı şəkildə icra edir, zəruri komponentlər yenilənir.</p></article>
+          <article class="step"><span class="step-number">04</span><h3>Sınaq və təhvil</h3><p>Sazlama, funksional sınaq və keyfiyyət yoxlamasından sonra avadanlıq istismara verilir.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement">
+      <div class="container">
+        <div class="statement-box" data-reveal>
+          <div class="statement-copy">
+            <p class="eyebrow">Şirkət siyasəti</p>
+            <blockquote>“Müştərilərimizin texniki ehtiyaclarını dərindən öyrənir, mühərrik nasazlıqlarını zərgər dəqiqliyi ilə bərpa edirik.”</blockquote>
+            <cite>Caspian Motors Clinic MMC</cite>
+          </div>
+          <div class="statement-image"><img src="assets/image30.png" alt="Klapanın təmir və bərpa işi"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="elaqe">
+      <div class="container cta-grid">
+        <div class="cta-copy" data-reveal>
+          <h2>Gəminiz üçün etibarlı texniki həll lazımdır?</h2>
+          <p>İşin həcmini qiymətləndirmək və uyğun servis həllini müzakirə etmək üçün bizimlə əlaqə saxlayın.</p>
+        </div>
+        <div class="cta-actions" data-reveal>
+          <a class="button button-light" href="https://www.caspianmc.com" target="_blank" rel="noopener">Rəsmi veb-sayt</a>
+          <a class="button button-outline" href="#ana-sehife">Yuxarı qayıt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 19V5m-6 6 6-6 6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="#ana-sehife"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 16.5c2.2 0 2.2-1.8 4.4-1.8s2.2 1.8 4.4 1.8 2.2-1.8 4.4-1.8 2.2 1.8 4.4 1.8"/><path d="M12 14V3m0 0 3 3M12 3 9 6"/><path d="M7.5 11.8h9"/></svg></span><span class="brand-text"><strong>Caspian Motors Clinic</strong><span>Marine Solutions · MMC</span></span></a>
+          <p>Gəmi mühərrikləri və dəniz texniki sistemləri üzrə peşəkar təmir, bərpa və servis həlləri.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Naviqasiya</h3>
+          <div class="footer-links"><a href="#haqqimizda">Haqqımızda</a><a href="#xidmetler">Xidmətlər</a><a href="#tehlukesizlik">Təhlükəsizlik</a><a href="#proses">İş prosesimiz</a></div>
+        </div>
+        <div class="footer-contact">
+          <h3 class="footer-heading">Onlayn</h3>
+          <p>Ətraflı məlumat və texniki sorğular üçün rəsmi səhifəmizə keçin.</p>
+          <div class="footer-links"><a href="https://www.caspianmc.com" target="_blank" rel="noopener">www.caspianmc.com ↗</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Caspian Motors Clinic MMC. Bütün hüquqlar qorunur.</span><a href="#ana-sehife">Marine solutions. Trusted partner.</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.site-nav');
+    menuToggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(opened));
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('[data-reveal]').forEach(item => revealObserver.observe(item));
+  </script>
+</body>
+</html>
