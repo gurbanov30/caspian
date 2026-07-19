@@ -371,11 +371,14 @@
       .hero-content { min-height: auto; padding: 48px 0 95px; }
       .hero h1 { font-size: clamp(2rem, 7.5vw, 2.9rem); line-height: 1.06; }
       .hero-copy > p { font-size: .92rem; margin: 15px 0 22px; }
-      .hero-actions { gap: 10px; }
-      .trust-strip { position: relative; }
-      .trust-item { min-height: auto; padding: 10px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); }
-      .trust-item:last-child { border-bottom: 0; }
-      .trust-strip .container { padding: 10px 0; }
+      .trust-strip { position: relative; background: rgba(2, 24, 51, .92); border-top: 1px solid rgba(255,255,255,.15); }
+      .trust-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+      .trust-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; min-height: auto; padding: 12px 4px; border-right: 1px solid rgba(255,255,255,.12); border-bottom: 0; }
+      .trust-item:last-child { border-right: 0; }
+      .trust-item svg { width: 22px; height: 22px; }
+      .trust-item strong { font-size: .68rem; letter-spacing: .01em; line-height: 1.2; text-transform: uppercase; }
+      .trust-item span { font-size: .6rem; margin-top: 2px; line-height: 1.2; color: #b4d3ea; }
+      .trust-strip .container { padding: 0; }
       .intro, .capabilities, .process, .heritage { padding: 48px 0; }
       .services, .safety, .contact, .principles { padding: 45px 0; }
       .contact-list { grid-template-columns: 1fr; gap: 10px; }
