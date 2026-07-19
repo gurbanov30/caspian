@@ -287,6 +287,46 @@
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); color: #a0b7cd; font-size: .75rem; }
     .footer-bottom a { color: #a8c4d6; }
 
+    /* Heritage & History Section */
+    .heritage { padding: 90px 0; background: #f8fafc; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .heritage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .heritage-card { padding: 30px 26px; background: #fff; border: 1px solid #e2e8f0; border-top: 4px solid var(--blue); border-radius: 6px; box-shadow: 0 4px 20px rgba(0,0,0,.03); transition: transform .3s ease, box-shadow .3s ease; }
+    .heritage-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(4,37,76,.08); }
+    .heritage-year { color: var(--blue); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+    .heritage-card h3 { color: var(--navy-deep); font-size: 1.2rem; margin: 0 0 10px; line-height: 1.25; }
+    .heritage-card p { color: var(--muted); font-size: .88rem; margin: 0; line-height: 1.6; }
+
+    /* Stats Strip */
+    .stats-strip { padding: 45px 0; background: var(--navy-deep); color: #fff; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat-box { padding: 10px; }
+    .stat-num { display: block; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 850; color: #7de0f8; line-height: 1; letter-spacing: -.03em; }
+    .stat-label { display: block; margin-top: 8px; color: #cbdbe8; font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+
+    /* Modal Overlay & Form */
+    .modal-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: rgba(2, 23, 48, .75); backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity .3s ease, visibility .3s ease; visibility: hidden; }
+    .modal-overlay.is-active { opacity: 1; pointer-events: auto; visibility: visible; }
+    .modal-container { position: relative; width: min(100%, 640px); max-height: 90vh; overflow-y: auto; padding: 38px 32px; background: #fff; border-radius: 8px; box-shadow: 0 25px 60px rgba(0,0,0,.3); transform: scale(.95); transition: transform .3s ease; }
+    .modal-overlay.is-active .modal-container { transform: scale(1); }
+    .modal-close { position: absolute; top: 18px; right: 18px; display: grid; place-items: center; width: 36px; height: 36px; color: var(--muted); background: var(--soft); border: 0; border-radius: 50%; cursor: pointer; transition: color .2s, background .2s; }
+    .modal-close:hover { color: var(--navy); background: #e2eaf2; }
+    .modal-close svg { width: 18px; height: 18px; }
+    .modal-header h2 { margin: 4px 0 8px; color: var(--navy-deep); font-size: 1.6rem; letter-spacing: -.03em; }
+    .modal-header p { margin: 0 0 22px; color: var(--muted); font-size: .92rem; }
+    .inquiry-form { display: grid; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: grid; gap: 6px; }
+    .form-group label { color: var(--navy); font-size: .78rem; font-weight: 750; letter-spacing: .02em; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 11px 14px; border: 1px solid #cbd7e3; border-radius: 4px; font: inherit; font-size: .9rem; color: var(--ink); background: #fcfdfe; transition: border-color .2s, box-shadow .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(12,95,167,.15); }
+    .form-actions { margin-top: 8px; }
+    .form-submit-btn { width: 100%; min-height: 48px; font-size: .95rem; cursor: pointer; }
+    .form-success-msg { text-align: center; padding: 25px 10px; }
+    .success-icon { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 16px; color: #10b981; background: #ecfdf5; border-radius: 50%; }
+    .success-icon svg { width: 30px; height: 30px; }
+    .form-success-msg h3 { margin: 0 0 8px; color: var(--navy-deep); font-size: 1.35rem; }
+    .form-success-msg p { color: var(--muted); font-size: .92rem; margin: 0 0 20px; }
+
     html.js [data-reveal] { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity .7s ease, transform .7s ease; }
     html.js [data-reveal].visible { opacity: 1; transform: translate3d(0, 0, 0); }
 
@@ -315,6 +355,9 @@
       .step:nth-child(2)::after { display: none; }
       .step { padding-right: 20px; }
       .statement-image { min-height: 300px; }
+      .heritage-grid, .stats-grid, .form-row { grid-template-columns: 1fr; }
+      .stats-grid { gap: 20px; }
+      .modal-container { padding: 28px 20px; }
       .footer-main { flex-direction: column; gap: 20px; padding-bottom: 20px; }
     }
     @media (max-width: 580px) {
@@ -376,13 +419,14 @@
       </button>
       <nav class="site-nav" id="site-nav" aria-label="Əsas naviqasiya">
         <a href="#haqqimizda">Haqqımızda</a>
+        <a href="#tarixce">Təcrübə & İrs</a>
         <a href="#xidmetler">Xidmətlər</a>
         <a href="#proses">İş prosesimiz</a>
         <a href="#tehlukesizlik">Təhlükəsizlik</a>
         <a href="#elaqe">Əlaqə</a>
-        <a class="button button-primary header-action" href="#elaqe">Bizimlə Əlaqə</a>
+        <a class="button button-primary header-action open-inquiry-modal" href="#inquiry">Texniki Sorğu</a>
       </nav>
-      <a class="button button-primary header-action" href="#elaqe">Bizimlə Əlaqə</a>
+      <a class="button button-primary header-action open-inquiry-modal" href="#inquiry">Texniki Sorğu</a>
     </div>
   </header>
 
@@ -394,8 +438,8 @@
           <h1>Dənizdə etibarlı <em>güc</em> üçün peşəkar texniki həllər.</h1>
           <p>Gəmi mühərrikləri, mexaniki sistemlər və dəniz avadanlıqları üzrə dəqiq diaqnostika, əsaslı təmir və operativ servis.</p>
           <div class="hero-actions">
-            <a class="button button-light" href="#xidmetler">Xidmətlərimizi kəşf edin <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-            <a class="button button-outline" href="#haqqimizda">Şirkət profili</a>
+            <button class="button button-primary open-inquiry-modal" type="button">Texniki Sorğu Göndərin <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+            <a class="button button-outline" href="#xidmetler">Xidmətlərimiz</a>
           </div>
         </div>
       </div>
@@ -417,14 +461,62 @@
         <div class="split-copy" data-reveal>
           <p class="eyebrow">Şirkət profili</p>
           <h2>Dəniz sənayesində etibarlı texniki tərəfdaşınız.</h2>
-          <p>Şirkətimizin əsası gəmi mühərriklərinin, mexaniki və elektron sistemlərinin təmiri sahəsində peşəkar xidmət göstərmək məqsədilə qoyulub. İlk gündən yüksək dəqiqlik və dərin texniki bilik tələb edən mürəkkəb mühəndislik layihələrində iştirak etmişik.</p>
-          <p>İllər ərzində qazanılan zəngin təcrübə sayəsində fəaliyyətimizi dəniz sənayesinə yönəltmiş, gəmi təmiri sektorunda mövqeyimizi möhkəmləndirmişik.</p>
+          <p>Şirkətimizin əsası 2003-cü ildə mühərriklərin, mexaniki və elektron sistemlərin təmiri sahəsində peşəkar xidmət göstərmək məqsədilə qoyulub. İlk illərimizdən ağır sənaye texnikalarının, metro tunelqazma qurğularının, zirehli hərbi texnikaların və tank mühərriklərinin/transmissiyalarının təmiri kimi yüksək dəqiqlik tələb edən layihələrdə iştirak etmişik.</p>
+          <p>İllər ərzində qazanılan zəngin mühəndislik təcrübəsini dəniz sənayesinə yönəldərək baş və köməkçi gəmi mühərrikləri, dizel-generatorlar, reduktorlar və Waterjet (su şırnağı) sistemləri üzrə etibarlı tərəfdaş mövqeyimizi möhkəmləndirmişik.</p>
           <ul class="checklist">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Baş və köməkçi mühərriklərin cari və əsaslı təmiri</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Mexaniki, elektron və gücötürmə sistemləri üçün kompleks servis</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Beynəlxalq standartlara uyğun təhlükəsiz iş prinsipləri</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Baş və köməkçi dizel mühərriklərinin cari, orta və əsaslı təmiri</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Waterjet (su şırnağı), reduktor, mufta və val xətlərinin servisi</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Elektron idarəetmə panelləri, sensorlar və hidravlik boru xətləri</li>
           </ul>
-          <a class="button button-primary" href="#proses">Necə işləyirik <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a class="button button-primary open-inquiry-modal" href="#inquiry">Texniki Sorğu Göndər <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="heritage" id="tarixce">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">2003-dən bu günə</p>
+          <h2>Zəngin mühəndislik irsi və dərin texniki təcrübə.</h2>
+          <p>Şirkətimiz ağır sənaye və yüksək dəqiqlik tələb edən xüsusi mühəndislik layihələrindən dəniz sənayesinə uzanan zəngin inkişaf yolu keçmişdir.</p>
+        </div>
+        <div class="heritage-grid" data-reveal>
+          <article class="heritage-card">
+            <div class="heritage-year">2003 – Əsasının Qoyulması</div>
+            <h3>Ağır Sənaye & Tunelqazma Qurğuları</h3>
+            <p>Buldozerlər, ağır sənaye texnikası və metro tunelqazma qurğularının yüksək dəqiqlik tələb edən mühərriklərinin yığılması və sazlanması layihələri.</p>
+          </article>
+          <article class="heritage-card">
+            <div class="heritage-year">Hərbi & Xüsusi Mühəndislik</div>
+            <h3>Zirehli Texnika & Tank Mühərrikləri</h3>
+            <p>Zirehli hərbi texnikaların və tankların mühərrik, transmissiya və elektron idarəetmə sistemlərinin diaqnostikası, təmiri və istismara hazırlanması.</p>
+          </article>
+          <article class="heritage-card">
+            <div class="heritage-year">Bu gün – Dəniz Sənayesi</div>
+            <h3>Gəmi Təmiri & Waterjet Sistemləri</h3>
+            <p>Zəngin təcrübəmizi dəniz sənayesinə yönəldərək gəmi baş mühərrikləri, Waterjet (su şırnağı), hidravlika və otomasyon üzrə etibarlı tərəfdaş mövqeyi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div class="container stats-grid">
+        <div class="stat-box">
+          <span class="stat-num">20+</span>
+          <span class="stat-label">İl Mühəndislik Təcrübəsi</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Orijinal Və Sertifikatlı Hissələr</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">On-Board</span>
+          <span class="stat-label">Liman & Dənizdə Operativ Servis</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">0 Qəza</span>
+          <span class="stat-label">HSE Təhlükəsizlik Prinsipi</span>
         </div>
       </div>
     </section>
@@ -442,15 +534,27 @@
         <div class="service-grid">
           <article class="service-card" data-reveal>
             <img src="assets/image10.png" alt="Gəmi mühərriki" loading="lazy">
-            <div class="service-card-content"><span class="service-number">01 / Mühərriklər</span><h3>Baş və köməkçi mühərriklərin servisi</h3><p>Diaqnostika, cari, orta və əsaslı təmir, sınaq və sazlama.</p></div>
+            <div class="service-card-content"><span class="service-number">01 / Mühərriklər</span><h3>Baş və Köməkçi Mühərriklər, Dizel-Generatorlar</h3><p>İstismar yerində (On-board) və emalatxanada cari, orta və əsaslı təmir, sınaq və sazlama.</p></div>
           </article>
           <article class="service-card" data-reveal>
             <img src="assets/image9.png" alt="Gəmi mühərrikinin propulsiv sistemi" loading="lazy">
-            <div class="service-card-content"><span class="service-number">02 / Gücötürmə</span><h3>Transmissiya və propulsiv sistemlər</h3><p>Reduktor, mufta, val xətləri və digər gücötürmə avadanlıqlarının təmiri.</p></div>
+            <div class="service-card-content"><span class="service-number">02 / Waterjet & Transmissiya</span><h3>Waterjet (Su Şırnağı) & Reduktor Sistemləri</h3><p>Reduktor, mufta, val xətləri, Waterjet modernizasiyası və gücötürmə aqreqatlarının bərpası.</p></div>
           </article>
           <article class="service-card" data-reveal>
             <img src="assets/image20.png" alt="Gəmi boru xətləri və klapanlar" loading="lazy">
-            <div class="service-card-content"><span class="service-number">03 / Sistemlər</span><h3>Boru xətləri və klapan sistemləri</h3><p>Yanacaq, su, yağ, hava və yanğınsöndürmə xətlərinin yenilənməsi və bərpası.</p></div>
+            <div class="service-card-content"><span class="service-number">03 / Sistemlər & Klapanlar</span><h3>Boru Xətləri, Klapanlar və Çirkab Su</h3><p>Yanacaq, yağ, soyutma, ballast, şirin su və korroziyaya davamlı çirkab su xətlərinin yenilənməsi.</p></div>
+          </article>
+          <article class="service-card" data-reveal>
+            <img src="assets/image6.png" alt="Hidravlik sistemlərin diaqnostikası" loading="lazy">
+            <div class="service-card-content"><span class="service-number">04 / Hidravlika</span><h3>Hidravlik Sistemlər & Yüksək Təzyiq</h3><p>Yüksək təzyiqli nasoslar, silindrlər, paylayıcı sistemlər və hidravlik yağ dəyişdirilməsi.</p></div>
+          </article>
+          <article class="service-card" data-reveal>
+            <img src="assets/image4.png" alt="CO2 yanğınsöndürmə və təhlükəsizlik" loading="lazy">
+            <div class="service-card-content"><span class="service-number">05 / Təhlükəsizlik</span><h3>CO₂ Yanğınsöndürmə & Quick Closing Valve</h3><p>CO₂ balonları, yüksək təzyiqli paylayıcı xətlər və Quick Closing Valve mexanizmlərinin baxışı.</p></div>
+          </article>
+          <article class="service-card" data-reveal>
+            <img src="assets/image30.png" alt="Elektron panellər və iqlimləndirmə" loading="lazy">
+            <div class="service-card-content"><span class="service-number">06 / Otomasyon & HVAC</span><h3>Elektron İdarəetmə, Sensorlar & İqlimləndirmə</h3><p>Sensor diaqnostikası, preventiv xidmət, kompressorlar və freon havalandırma sistemləri.</p></div>
           </article>
         </div>
         <p class="services-footnote">Hidravlik sistemlər, CO₂ yanğınsöndürmə avadanlıqları, iqlimləndirmə və çirkab su sistemləri üzrə də texniki xidmət göstəririk.</p>
@@ -595,6 +699,71 @@
     </div>
   </footer>
 
+  <!-- Modal Dialog for Technical Inquiry -->
+  <div class="modal-overlay" id="inquiry-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-container">
+      <button class="modal-close" type="button" aria-label="Bağla" id="close-modal-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="eyebrow">Onlayn Texniki Sorğu</span>
+        <h2 id="modal-title">Texniki xidmət və təmir sorğusu</h2>
+        <p>Gəmi mühərriki, mexaniki və ya elektron sistemləriniz üçün mühəndislərimizə sorğu göndərin.</p>
+      </div>
+      <form class="inquiry-form" id="inquiry-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-name">Adınız / Şirkətin Adı *</label>
+            <input type="text" id="form-name" required placeholder="Məsələn: Əli Məmmədov və ya Caspian Shipping MMC">
+          </div>
+          <div class="form-group">
+            <label for="form-phone">Əlaqə Telefonu *</label>
+            <input type="tel" id="form-phone" required placeholder="+994 50 000 00 00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-service">Xidmət Sahəsi *</label>
+            <select id="form-service" required>
+              <option value="" disabled selected>Xidmət istiqamətini seçin</option>
+              <option value="engine">Baş və Köməkçi Mühərriklər / Generatorlar</option>
+              <option value="waterjet">Waterjet (Su Şırnağı) & Transmissiya</option>
+              <option value="hydraulics">Hidravlik Sistemlər və Boru Xətləri</option>
+              <option value="co2">CO₂ Yanğınsöndürmə & Quick Closing Valve</option>
+              <option value="electronics">Elektron İdarəetmə Panelləri və Sensorlar</option>
+              <option value="hvac">İqlimləndirmə & Freon Sistemləri</option>
+              <option value="other">Digər Texniki Xidmət</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-location">İcra Yeri</label>
+            <select id="form-location">
+              <option value="onboard">İstismar Yeri (On-board / Limanda)</option>
+              <option value="workshop">Emalatxana Şəraitində</option>
+              <option value="consultation">İlkin Diaqnostika & Məsləhət</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="form-message">Sorğunun Təsviri və Nasazlıq Haqqında Qeyd</label>
+          <textarea id="form-message" rows="3" placeholder="Mühərrikin modeli, yararan nasazlıq və ya təmir ehtiyacı haqqında qısa məlumat yazın..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="button button-primary form-submit-btn">
+            <span>Sorğunu Göndər</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </button>
+        </div>
+      </form>
+      <div class="form-success-msg" id="form-success-msg" style="display: none;">
+        <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3>Təşəkkür edirik! Sorğunuz qəbul olundu.</h3>
+        <p>Mühəndislərimiz təhlil edib ən qısa zamanda sizinlə əlaqə saxlayacaqlar.</p>
+        <button type="button" class="button button-primary" id="modal-success-close">Bağla</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.site-nav');
@@ -622,12 +791,62 @@
       }
     });
 
+    // Modal controls for Technical Inquiry
+    const inquiryModal = document.getElementById('inquiry-modal');
+    const openModalBtns = document.querySelectorAll('.open-inquiry-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const successCloseBtn = document.getElementById('modal-success-close');
+    const inquiryForm = document.getElementById('inquiry-form');
+    const successMsg = document.getElementById('form-success-msg');
+
+    function openModal() {
+      inquiryModal.classList.add('is-active');
+      inquiryModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      inquiryModal.classList.remove('is-active');
+      inquiryModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        inquiryForm.reset();
+        inquiryForm.style.display = 'grid';
+        successMsg.style.display = 'none';
+      }, 300);
+    }
+
+    openModalBtns.forEach(btn => btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      setMenuState(false);
+      openModal();
+    }));
+
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (successCloseBtn) successCloseBtn.addEventListener('click', closeModal);
+
+    inquiryModal.addEventListener('click', (e) => {
+      if (e.target === inquiryModal) closeModal();
+    });
+
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-        setMenuState(false);
-        menuToggle.focus();
+      if (event.key === 'Escape') {
+        if (inquiryModal.classList.contains('is-active')) {
+          closeModal();
+        } else if (nav.classList.contains('is-open')) {
+          setMenuState(false);
+          menuToggle.focus();
+        }
       }
     });
+
+    if (inquiryForm) {
+      inquiryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        inquiryForm.style.display = 'none';
+        successMsg.style.display = 'block';
+      });
+    }
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
