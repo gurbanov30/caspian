@@ -1,10 +1,57 @@
 <!doctype html>
-<html lang="az">
+<html lang="az" class="no-js">
 <head>
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Caspian Motors Clinic — gəmi mühərrikləri və dəniz texniki sistemləri üçün peşəkar təmir və servis xidmətləri.">
   <title>Caspian Motors Clinic | Marine Solutions</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/faic.png" type="image/x-icon">
+
+  <!-- Canonical Tag -->
+  <link rel="canonical" href="https://www.caspianmc.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Caspian Motors Clinic | Marine Solutions">
+  <meta property="og:description" content="Caspian Motors Clinic — gəmi mühərrikləri və dəniz texniki sistemləri üçün peşəkar təmir və servis xidmətləri.">
+  <meta property="og:url" content="https://www.caspianmc.com/">
+  <meta property="og:image" content="https://www.caspianmc.com/assets/image4.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Caspian Motors Clinic | Marine Solutions">
+  <meta name="twitter:description" content="Caspian Motors Clinic — gəmi mühərrikləri və dəniz texniki sistemləri üçün peşəkar təmir və servis xidmətləri.">
+  <meta name="twitter:image" content="https://www.caspianmc.com/assets/image4.png">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Caspian Motors Clinic",
+    "image": "https://www.caspianmc.com/assets/image4.png",
+    "url": "https://www.caspianmc.com",
+    "telephone": "+994552308809",
+    "email": "caspianmotorsclinic@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "İnqilab İsmayılov 6, Xətai r-nu",
+      "addressLocality": "Bakı",
+      "addressCountry": "AZ"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.3800,
+      "longitude": 49.9500
+    },
+    "sameAs": [
+      "https://instagram.com/caspianmotorsclinic"
+    ]
+  }
+  </script>
   <style>
     :root {
       --navy: #062e5a;
@@ -22,6 +69,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    section[id] { scroll-margin-top: 85px; }
     body {
       margin: 0;
       color: var(--ink);
@@ -75,26 +123,37 @@
     .button svg { width: 16px; height: 16px; }
 
     .topline { height: 5px; background: linear-gradient(90deg, #0a4f92, #57c9ea 55%, #0a4f92); }
-    .site-header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.95); border-bottom: 1px solid rgba(5,45,88,.08); backdrop-filter: blur(16px); }
+    .site-header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.82); border-bottom: 1px solid rgba(5,45,88,.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px 0 rgba(4, 34, 71, 0.04); }
     .header-content { display: flex; align-items: center; justify-content: space-between; height: 76px; }
     .brand { display: inline-flex; align-items: center; gap: 11px; min-width: max-content; }
-    .brand-mark { position: relative; display: grid; width: 39px; height: 39px; place-items: center; overflow: hidden; color: #fff; background: var(--navy); border-radius: 50%; box-shadow: inset 0 0 0 4px #dfeff8; }
-    .brand-mark::after { position: absolute; right: -6px; bottom: 6px; width: 28px; height: 7px; content: ""; border-top: 2px solid #64cfeb; border-radius: 50%; transform: rotate(-14deg); }
-    .brand-mark svg { width: 23px; height: 23px; }
+    .brand-mark { position: relative; display: flex; align-items: center; justify-content: center; width: 56px; height: 38px; overflow: hidden; }
+    .brand-mark img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease; }
+    @keyframes shipBob {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-2.5px) rotate(-1.5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    .brand:hover .brand-mark img { animation: shipBob 2s ease-in-out infinite; }
     .brand-text { display: grid; line-height: 1; }
     .brand-text strong { color: var(--navy); font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; font-style: italic; letter-spacing: -.04em; }
     .brand-text span { margin-top: 4px; color: var(--blue); font-size: .54rem; font-weight: 800; letter-spacing: .21em; text-transform: uppercase; }
     .site-nav { display: flex; align-items: center; gap: 26px; }
-    .site-nav a { color: #31445d; font-size: .84rem; font-weight: 750; transition: color .2s; }
+    .site-nav a { position: relative; color: #31445d; font-size: .84rem; font-weight: 750; transition: color .25s; padding: 6px 0; }
+    .site-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background-color: var(--blue); transition: width 0.3s ease, left 0.3s ease; }
+    .site-nav a:hover::after { width: 100%; left: 0; }
     .site-nav a:hover, .site-nav a:focus-visible { color: var(--blue); }
-    .header-action { min-height: 40px; padding: 0 16px; font-size: .77rem; }
-    .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; color: var(--navy); background: transparent; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }
-    .menu-toggle svg { width: 20px; }
+    .site-nav .header-action { display: none; }
+    .header-action { min-height: 40px; padding: 0 18px; font-size: .77rem; }
+    .menu-toggle { display: none; width: 48px; height: 48px; padding: 0; color: var(--navy); background: transparent; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; place-items: center; }
+    .menu-toggle svg { width: 22px; height: 22px; }
+    .menu-toggle .icon-close { display: none; }
+    .menu-toggle.is-open .icon-menu { display: none; }
+    .menu-toggle.is-open .icon-close { display: block; }
 
-    .hero { position: relative; min-height: 670px; overflow: hidden; color: white; background: var(--navy-deep); isolation: isolate; }
-    .hero::before { position: absolute; inset: 0; z-index: -2; content: ""; background: url("assets/image1.png") 67% 35% / cover no-repeat; opacity: .87; filter: saturate(.85) contrast(1.04); }
-    .hero::after { position: absolute; inset: 0; z-index: -1; content: ""; background: linear-gradient(90deg, rgba(3, 26, 54, .97) 0%, rgba(3, 33, 67, .89) 39%, rgba(3, 34, 70, .44) 66%, rgba(3, 29, 59, .38) 100%); }
-    .hero-content { display: flex; align-items: center; min-height: 670px; padding: 85px 0 120px; }
+    .hero { position: relative; min-height: calc(100vh - 80px); overflow: hidden; color: white; background: var(--navy-deep); isolation: isolate; }
+    .hero::before { position: absolute; inset: 0; z-index: -2; content: ""; background: url("assets/hero_bg.jpg") center 40% / cover no-repeat; opacity: .92; filter: saturate(1.05) contrast(1.05); }
+    .hero::after { position: absolute; inset: 0; z-index: -1; content: ""; background: linear-gradient(90deg, rgba(3, 26, 54, .96) 0%, rgba(3, 33, 67, .84) 45%, rgba(3, 34, 70, .48) 72%, rgba(3, 29, 59, .35) 100%); }
+    .hero-content { display: flex; align-items: center; min-height: calc(100vh - 170px); padding: 85px 0 120px; }
     .hero-copy { max-width: 715px; }
     .hero .eyebrow { color: #9be7fb; }
     .hero h1 { max-width: 690px; margin: 0; font-size: clamp(2.9rem, 6vw, 5.45rem); line-height: .98; letter-spacing: -.065em; }
@@ -175,20 +234,20 @@
     .safety-card h3 { margin: 17px 0 7px; font-size: 1.25rem; }
     .safety-card p { margin: 0; color: #c3d8e7; font-size: .9rem; }
 
-    .contact { position: relative; overflow: hidden; padding: 108px 0; color: #fff; background: #073c76; isolation: isolate; }
+    .contact { position: relative; overflow: hidden; padding: 75px 0; color: #fff; background: #073c76; isolation: isolate; }
     .contact::before { position: absolute; inset: 0; z-index: -2; content: ""; background: linear-gradient(120deg, #021d3e 0%, #063a73 56%, #0b5da4 100%); }
     .contact::after { position: absolute; z-index: -1; right: -14%; bottom: -168px; width: 78%; height: 330px; content: ""; border: 32px solid rgba(110, 211, 241, .16); border-radius: 50% 50% 0 0; transform: rotate(-9deg); }
-    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(45px, 8vw, 110px); align-items: center; }
+    .contact-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(35px, 5vw, 65px); align-items: center; }
     .contact-copy .eyebrow { color: #8fe7fc; }
-    .contact-copy h2 { max-width: 500px; margin: 0; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.04; letter-spacing: -.05em; }
-    .contact-copy > p { max-width: 460px; margin: 18px 0 0; color: #cce6f3; }
-    .contact-list { display: grid; gap: 17px; }
-    .contact-item { display: flex; align-items: center; gap: 18px; min-height: 84px; padding: 17px 20px; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); transition: background .2s ease, transform .2s ease; }
-    a.contact-item:hover, a.contact-item:focus-visible { background: rgba(255,255,255,.15); transform: translateX(5px); }
-    .contact-icon { display: grid; flex: 0 0 auto; width: 46px; height: 46px; place-items: center; color: #a0eafa; border: 1px solid rgba(255,255,255,.62); border-radius: 50%; }
-    .contact-icon svg { width: 23px; height: 23px; }
-    .contact-item span { display: block; color: #9ce7fa; font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .contact-item strong { display: block; margin-top: 2px; color: #fff; font-size: clamp(.93rem, 2vw, 1.08rem); font-weight: 650; line-height: 1.35; }
+    .contact-copy h2 { max-width: 500px; margin: 0; color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.05; letter-spacing: -.04em; }
+    .contact-copy > p { max-width: 440px; margin: 14px 0 0; color: #cce6f3; font-size: .94rem; }
+    .contact-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 16px; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 6px; transition: background .2s ease, transform .2s ease; }
+    a.contact-item:hover, a.contact-item:focus-visible { background: rgba(255,255,255,.16); transform: translateY(-2px); }
+    .contact-icon { display: grid; flex: 0 0 auto; width: 38px; height: 38px; place-items: center; color: #a0eafa; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; }
+    .contact-icon svg { width: 19px; height: 19px; }
+    .contact-item span { display: block; color: #9ce7fa; font-size: .65rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+    .contact-item strong { display: block; margin-top: 1px; color: #fff; font-size: .86rem; font-weight: 650; line-height: 1.3; word-break: break-word; }
 
     .process { padding: 116px 0; }
     .process .section-heading { margin-bottom: 48px; }
@@ -216,31 +275,32 @@
     .cta-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 12px; }
     .cta .button-outline { color: #fff; }
 
-    .site-footer { padding: 55px 0 25px; color: #c1d5e5; background: #021932; }
-    .footer-main { display: grid; grid-template-columns: 1.2fr .7fr .9fr; gap: 50px; padding-bottom: 45px; }
+    .site-footer { padding: 35px 0 20px; color: #c1d5e5; background: #021932; }
+    .footer-main { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; padding-bottom: 25px; }
     .footer-brand .brand-text strong { color: #fff; }
     .footer-brand .brand-text span { color: #83ddf6; }
-    .footer-brand > p { max-width: 340px; margin: 19px 0 0; font-size: .85rem; }
-    .footer-heading { margin: 0 0 15px; color: #fff; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
-    .footer-links { display: grid; gap: 8px; }
-    .footer-links a, .footer-contact p { color: #b9cfdf; font-size: .85rem; }
+    .footer-brand > p { max-width: 380px; margin: 12px 0 0; font-size: .83rem; line-height: 1.5; color: #a4bccf; }
+    .footer-heading { margin: 0 0 12px; color: #fff; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+    .footer-links a { color: #b9cfdf; font-size: .85rem; transition: color .2s; }
     .footer-links a:hover { color: #84e0fa; }
-    .footer-contact p { margin: 0 0 8px; }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 23px; border-top: 1px solid rgba(255,255,255,.14); color: #839db3; font-size: .74rem; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); color: #a0b7cd; font-size: .75rem; }
     .footer-bottom a { color: #a8c4d6; }
 
-    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+    html.js [data-reveal] { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity .7s ease, transform .7s ease; }
+    html.js [data-reveal].visible { opacity: 1; transform: translate3d(0, 0, 0); }
 
     @media (max-width: 850px) {
-      .site-nav { position: absolute; top: calc(100% + 1px); right: 0; left: 0; display: grid; gap: 0; padding: 11px 20px 20px; background: rgba(255,255,255,.99); border-bottom: 1px solid var(--line); box-shadow: 0 14px 25px rgba(5,34,68,.1); transform: translateY(-12px); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
-      .site-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-      .site-nav a { padding: 12px 0; border-bottom: 1px solid #edf2f7; }
+      .site-nav { position: absolute; top: calc(100% + 1px); right: 0; left: 0; display: grid; gap: 0; padding: 11px 20px 20px; background: rgba(255,255,255,.99); border-bottom: 1px solid var(--line); box-shadow: 0 14px 25px rgba(5,34,68,.1); transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden; transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
+      .site-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; visibility: visible; }
+      .site-nav a { padding: 14px 0; border-bottom: 1px solid #edf2f7; }
+      .site-nav a::after { display: none; }
       .site-nav .header-action { width: max-content; margin-top: 11px; border-bottom: 0; }
       .menu-toggle { display: grid; place-items: center; }
       .header-action { display: none; }
       .site-nav .header-action { display: inline-flex; }
-      .hero, .hero-content { min-height: 620px; }
+      .hero { min-height: calc(100vh - 67px); }
+      .hero-content { min-height: calc(100vh - 140px); }
       .intro-grid, .capabilities-grid, .safety-content, .contact-grid, .statement-box { grid-template-columns: 1fr; }
       .intro-grid, .capabilities-grid { gap: 52px; }
       .capability-panel { position: static; }
@@ -255,13 +315,12 @@
       .step:nth-child(2)::after { display: none; }
       .step { padding-right: 20px; }
       .statement-image { min-height: 300px; }
-      .footer-main { grid-template-columns: 1fr 1fr; }
-      .footer-brand { grid-column: span 2; }
+      .footer-main { flex-direction: column; gap: 20px; padding-bottom: 20px; }
     }
     @media (max-width: 580px) {
       .container { width: min(calc(100% - 32px), var(--max-width)); }
       .header-content { height: 67px; }
-      .brand-mark { width: 35px; height: 35px; }
+      .brand-mark { width: 48px; height: 32px; }
       .brand-text strong { font-size: 1.1rem; }
       .hero::before { background-position: 59% 25%; }
       .hero::after { background: linear-gradient(90deg, rgba(3, 26, 54, .97) 0%, rgba(3, 33, 67, .82) 72%, rgba(3, 29, 59, .56)); }
@@ -273,9 +332,9 @@
       .trust-item { min-height: auto; padding: 11px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.16); }
       .trust-item:last-child { border-bottom: 0; }
       .trust-strip .container { padding: 13px 0; }
-      .intro, .capabilities, .process { padding: 79px 0; }
-      .services, .safety, .contact, .principles { padding: 78px 0; }
-      .contact-item { align-items: flex-start; padding: 16px; }
+      .services, .safety, .contact, .principles { padding: 55px 0; }
+      .contact-list { grid-template-columns: 1fr; }
+      .contact-item { align-items: center; padding: 12px 14px; }
       .photo-composition { padding-right: 23px; padding-bottom: 23px; }
       .photo-composition > img { height: 410px; }
       .photo-accent { width: 49%; padding: 18px; }
@@ -297,9 +356,7 @@
       .statement-image { min-height: 245px; }
       .cta { padding: 68px 0; }
       .cta-actions { margin-top: 25px; }
-      .footer-main { grid-template-columns: 1fr; gap: 31px; }
-      .footer-brand { grid-column: auto; }
-      .footer-bottom { display: grid; }
+      .footer-links { gap: 10px 14px; }
     }
   </style>
 </head>
@@ -309,12 +366,13 @@
     <div class="container header-content">
       <a class="brand" href="#ana-sehife" aria-label="Caspian Motors Clinic ana səhifə">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 16.5c2.2 0 2.2-1.8 4.4-1.8s2.2 1.8 4.4 1.8 2.2-1.8 4.4-1.8 2.2 1.8 4.4 1.8"/><path d="M12 14V3m0 0 3 3M12 3 9 6"/><path d="M7.5 11.8h9"/></svg>
+          <img src="assets/logo.png" alt="Caspian Motors Clinic">
         </span>
         <span class="brand-text"><strong>Caspian Motors Clinic</strong><span>Marine Solutions · MMC</span></span>
       </a>
       <button class="menu-toggle" type="button" aria-label="Menyunu aç" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
       <nav class="site-nav" id="site-nav" aria-label="Əsas naviqasiya">
         <a href="#haqqimizda">Haqqımızda</a>
@@ -322,7 +380,9 @@
         <a href="#proses">İş prosesimiz</a>
         <a href="#tehlukesizlik">Təhlükəsizlik</a>
         <a href="#elaqe">Əlaqə</a>
+        <a class="button button-primary header-action" href="#elaqe">Bizimlə Əlaqə</a>
       </nav>
+      <a class="button button-primary header-action" href="#elaqe">Bizimlə Əlaqə</a>
     </div>
   </header>
 
@@ -351,7 +411,7 @@
     <section class="intro" id="haqqimizda">
       <div class="container intro-grid">
         <div class="photo-composition" data-reveal>
-          <img src="assets/image4.png" alt="Caspian Motors Clinic texniki heyəti gəmi yanında">
+          <img src="assets/image4.png" alt="Caspian Motors Clinic texniki heyəti gəmi yanında" loading="lazy">
           <div class="photo-accent"><span class="year">2003</span><span>ildən peşəkar mühəndislik və təmir təcrübəsi</span></div>
         </div>
         <div class="split-copy" data-reveal>
@@ -381,15 +441,15 @@
         </div>
         <div class="service-grid">
           <article class="service-card" data-reveal>
-            <img src="assets/image10.png" alt="Gəmi mühərriki">
+            <img src="assets/image10.png" alt="Gəmi mühərriki" loading="lazy">
             <div class="service-card-content"><span class="service-number">01 / Mühərriklər</span><h3>Baş və köməkçi mühərriklərin servisi</h3><p>Diaqnostika, cari, orta və əsaslı təmir, sınaq və sazlama.</p></div>
           </article>
           <article class="service-card" data-reveal>
-            <img src="assets/image9.png" alt="Gəmi mühərrikinin propulsiv sistemi">
+            <img src="assets/image9.png" alt="Gəmi mühərrikinin propulsiv sistemi" loading="lazy">
             <div class="service-card-content"><span class="service-number">02 / Gücötürmə</span><h3>Transmissiya və propulsiv sistemlər</h3><p>Reduktor, mufta, val xətləri və digər gücötürmə avadanlıqlarının təmiri.</p></div>
           </article>
           <article class="service-card" data-reveal>
-            <img src="assets/image20.png" alt="Gəmi boru xətləri və klapanlar">
+            <img src="assets/image20.png" alt="Gəmi boru xətləri və klapanlar" loading="lazy">
             <div class="service-card-content"><span class="service-number">03 / Sistemlər</span><h3>Boru xətləri və klapan sistemləri</h3><p>Yanacaq, su, yağ, hava və yanğınsöndürmə xətlərinin yenilənməsi və bərpası.</p></div>
           </article>
         </div>
@@ -419,14 +479,14 @@
           <div class="section-heading"><h2>Texniki problemləri sistemli həllə çeviririk.</h2></div>
           <p>Müasir diaqnostika vasitələri, düzgün ehtiyat hissələri və təcrübəli komanda ilə hər bir avadanlığın etibarlı işləməsi üçün çalışırıq.</p>
           <a class="button button-primary" href="#elaqe">Texniki sorğu göndərin</a>
-          <div class="capability-photo"><img src="assets/image6.png" alt="Təmir üçün mühərrik aqreqatının qaldırılması"></div>
+          <div class="capability-photo"><img src="assets/image6.png" alt="Təmir üçün mühərrik aqreqatının qaldırılması" loading="lazy"></div>
         </div>
         <div class="capability-list" data-reveal>
-          <details open><summary>Mühərrik və aqreqatların əsaslı təmiri</summary><p>Krank mili, silindr qolları, porşen, şatun, klapan mexanizmləri və digər əsas komponentlərin defektasiyası, təmiri və zəruri olduqda dəyişdirilməsi həyata keçirilir.</p></details>
-          <details><summary>Hidravlik sistemlərin diaqnostikası</summary><p>Yüksək təzyiqli nasoslar, silindrlər, paylayıcı sistemlər və boru xətləri yoxlanılır; nasazlıqlar və yağ sızmaları aradan qaldırılır, sistem sınaqdan keçirilir.</p></details>
-          <details><summary>CO₂ yanğınsöndürmə sistemləri</summary><p>CO₂ balonları, yüksək təzyiqli boru xətləri, paylayıcı sistemlər və Quick Closing Valve mexanizmləri texniki baxışdan keçirilir, sızdırmazlıq təmin edilir.</p></details>
-          <details><summary>Su, yanacaq və çirkab su xətləri</summary><p>Korroziyaya uğramış və istismar müddətini başa vurmuş borular, flanşlar, klapanlar və digər komponentlər müasir, davamlı həllərlə yenilənir.</p></details>
-          <details><summary>İqlimləndirmə və kondisioner sistemləri</summary><p>Kompressorlar və freon xətləri yoxlanılır, sistem təmizlənir, sızmalar aradan qaldırılır və lazımi həcmdə soyuducu qazla doldurulur.</p></details>
+          <details name="capabilities" open><summary>Mühərrik və aqreqatların əsaslı təmiri</summary><p>Krank mili, silindr qolları, porşen, şatun, klapan mexanizmləri və digər əsas komponentlərin defektasiyası, təmiri və zəruri olduqda dəyişdirilməsi həyata keçirilir.</p></details>
+          <details name="capabilities"><summary>Hidravlik sistemlərin diaqnostikası</summary><p>Yüksək təzyiqli nasoslar, silindrlər, paylayıcı sistemlər və boru xətləri yoxlanılır; nasazlıqlar və yağ sızmaları aradan qaldırılır, sistem sınaqdan keçirilir.</p></details>
+          <details name="capabilities"><summary>CO₂ yanğınsöndürmə sistemləri</summary><p>CO₂ balonları, yüksək təzyiqli boru xətləri, paylayıcı sistemlər və Quick Closing Valve mexanizmləri texniki baxışdan keçirilir, sızdırmazlıq təmin edilir.</p></details>
+          <details name="capabilities"><summary>Su, yanacaq və çirkab su xətləri</summary><p>Korroziyaya uğramış və istismar müddətini başa vurmuş borular, flanşlar, klapanlar və digər komponentlər müasir, davamlı həllərlə yenilənir.</p></details>
+          <details name="capabilities"><summary>İqlimləndirmə və kondisioner sistemləri</summary><p>Kompressorlar və freon xətləri yoxlanılır, sistem təmizlənir, sızmalar aradan qaldırılır və lazımi həcmdə soyuducu qazla doldurulur.</p></details>
         </div>
       </div>
     </section>
@@ -440,7 +500,7 @@
         </div>
         <div class="safety-card" data-reveal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4.5 6v5.2c0 4.6 3.2 8.8 7.5 9.8 4.3-1 7.5-5.2 7.5-9.8V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
-          <h3>“Sıfır qəza” prinsipi</h3>
+          <h3>"Sıfır qəza" prinsipi</h3>
           <p>Hər layihə risklərin qiymətləndirilməsi ilə başlayır. Mütəxəssislərimiz təhlükəsiz iş metodları, müntəzəm təlim və fərdi mühafizə vasitələri ilə ən yüksək HSE standartlarına riayət edir.</p>
         </div>
       </div>
@@ -467,10 +527,10 @@
         <div class="statement-box" data-reveal>
           <div class="statement-copy">
             <p class="eyebrow">Şirkət siyasəti</p>
-            <blockquote>“Müştərilərimizin texniki ehtiyaclarını dərindən öyrənir, mühərrik nasazlıqlarını zərgər dəqiqliyi ilə bərpa edirik.”</blockquote>
+            <blockquote>"Müştərilərimizin texniki ehtiyaclarını dərindən öyrənir, mühərrik nasazlıqlarını zərgər dəqiqliyi ilə bərpa edirik."</blockquote>
             <cite>Caspian Motors Clinic MMC</cite>
           </div>
-          <div class="statement-image"><img src="assets/image30.png" alt="Klapanın təmir və bərpa işi"></div>
+          <div class="statement-image"><img src="assets/image30.png" alt="Klapanın təmir və bərpa işi" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -485,15 +545,27 @@
         <div class="contact-list" data-reveal>
           <div class="contact-item">
             <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.7"/></svg></span>
-            <div><span>Ünvan</span><strong>İnqilab İsmayılov 6, Xətai r nu, Bakı, Azərbaycan</strong></div>
+            <div><span>Ünvan</span><strong>İnqilab İsmayılov 6, Xətai r-nu, Bakı, Azərbaycan</strong></div>
           </div>
           <a class="contact-item" href="tel:+994552308809">
             <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7.4 3.5 5.2 4.6c-.9.4-1.3 1.5-1 2.4 1.9 6.8 7.2 12.1 14 14 .9.3 2-.1 2.4-1l1.1-2.2-4.2-2.4-1.6 1.5c-2.2-1.1-4-2.9-5.1-5.1l1.5-1.6-2.4-4.2Z"/></svg></span>
-            <div><span>Telefon</span><strong>+994 55 230 88 09 · +994 12 571 41 23</strong></div>
+            <div><span>Mobil Telefon</span><strong>+994 55 230 88 09</strong></div>
+          </a>
+          <a class="contact-item" href="tel:+994125714123">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <div><span>Şəhər Telefonu</span><strong>+994 12 571 41 23</strong></div>
+          </a>
+          <a class="contact-item" href="https://wa.me/994552308809?text=Salam,%20saytdan%20yaz%C3%BDram." target="_blank" rel="noopener">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12c0 2.2.7 4.2 2 5.8L2.5 21.5l3.9-1.3C8 21.3 9.9 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/><path d="M15.9 13.5c-.3-.2-1.7-.9-2-.1-.3-.1-.5-.2-.7-.5-.2-.3-.2-.6-.3-1v-.3c0-.4.2-.8.5-1 .2-.2.5-.5.7-.7.2-.2.3-.4.3-.6v-.3c-.1-.4-.6-1.5-.8-2-.2-.5-.5-.5-.8-.5h-.6c-.3 0-.7.1-1 .4-.8.7-1.3 1.7-1.3 2.8 0 1.2.5 2.3 1.3 3.1 1.7 1.8 3.9 2.8 6.3 2.8.8 0 1.5-.2 2.1-.5.5-.3.8-.7.9-1.2.1-.3.1-.7.1-1v-.3c-.2-.4-.9-.8-1.5-1.1z"/></svg></span>
+            <div><span>WhatsApp</span><strong>+994 55 230 88 09</strong></div>
           </a>
           <a class="contact-item" href="mailto:caspianmotorsclinic@gmail.com">
             <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg></span>
             <div><span>E-poçt</span><strong>caspianmotorsclinic@gmail.com</strong></div>
+          </a>
+          <a class="contact-item" href="https://instagram.com/caspianmotorsclinic" target="_blank" rel="noopener">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><circle cx="12" cy="12" r="5"></circle><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></span>
+            <div><span>Instagram</span><strong>@caspianmotorsclinic</strong></div>
           </a>
         </div>
       </div>
@@ -505,17 +577,18 @@
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <a class="brand" href="#ana-sehife"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 16.5c2.2 0 2.2-1.8 4.4-1.8s2.2 1.8 4.4 1.8 2.2-1.8 4.4-1.8 2.2 1.8 4.4 1.8"/><path d="M12 14V3m0 0 3 3M12 3 9 6"/><path d="M7.5 11.8h9"/></svg></span><span class="brand-text"><strong>Caspian Motors Clinic</strong><span>Marine Solutions · MMC</span></span></a>
+          <a class="brand" href="#ana-sehife"><span class="brand-mark" aria-hidden="true"><img src="assets/logo.png" alt="Caspian Motors Clinic"></span><span class="brand-text"><strong>Caspian Motors Clinic</strong><span>Marine Solutions · MMC</span></span></a>
           <p>Gəmi mühərrikləri və dəniz texniki sistemləri üzrə peşəkar təmir, bərpa və servis həlləri.</p>
         </div>
         <div>
           <h3 class="footer-heading">Naviqasiya</h3>
-          <div class="footer-links"><a href="#haqqimizda">Haqqımızda</a><a href="#xidmetler">Xidmətlər</a><a href="#tehlukesizlik">Təhlükəsizlik</a><a href="#proses">İş prosesimiz</a></div>
-        </div>
-        <div class="footer-contact">
-          <h3 class="footer-heading">Onlayn</h3>
-          <p>Ətraflı məlumat və texniki sorğular üçün rəsmi səhifəmizə keçin.</p>
-          <div class="footer-links"><a href="https://www.caspianmc.com" target="_blank" rel="noopener">www.caspianmc.com ↗</a></div>
+          <div class="footer-links">
+            <a href="#haqqimizda">Haqqımızda</a>
+            <a href="#xidmetler">Xidmətlər</a>
+            <a href="#proses">İş prosesimiz</a>
+            <a href="#tehlukesizlik">Təhlükəsizlik</a>
+            <a href="#elaqe">Əlaqə</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom"><span>© <span id="year"></span> Caspian Motors Clinic MMC. Bütün hüquqlar qorunur.</span><a href="#ana-sehife">Marine solutions. Trusted partner.</a></div>
@@ -525,15 +598,39 @@
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.site-nav');
-    menuToggle.addEventListener('click', () => {
-      const opened = nav.classList.toggle('is-open');
+
+    function setMenuState(opened) {
+      nav.classList.toggle('is-open', opened);
+      menuToggle.classList.toggle('is-open', opened);
       menuToggle.setAttribute('aria-expanded', String(opened));
+      menuToggle.setAttribute('aria-label', opened ? 'Menyunu bağla' : 'Menyunu aç');
+    }
+
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const opened = !nav.classList.contains('is-open');
+      setMenuState(opened);
     });
+
     nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      nav.classList.remove('is-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
+      setMenuState(false);
     }));
+
+    document.addEventListener('click', (event) => {
+      if (nav.classList.contains('is-open') && !nav.contains(event.target) && !menuToggle.contains(event.target)) {
+        setMenuState(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+        setMenuState(false);
+        menuToggle.focus();
+      }
+    });
+
     document.getElementById('year').textContent = new Date().getFullYear();
+
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -542,6 +639,7 @@
         }
       });
     }, { threshold: .12 });
+
     document.querySelectorAll('[data-reveal]').forEach(item => revealObserver.observe(item));
   </script>
 </body>
