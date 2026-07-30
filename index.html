@@ -337,6 +337,10 @@
     .form-success-msg h3 { margin: 0 0 8px; color: var(--navy-deep); font-size: 1.35rem; }
     .form-success-msg p { color: var(--muted); font-size: .92rem; margin: 0 0 20px; }
 
+    .intro, .heritage, .services, .principles, .capabilities, .process { position: relative; overflow: hidden; }
+    .intro > .container, .heritage > .container, .services > .container, .principles > .container, .capabilities > .container, .process > .container { position: relative; z-index: 1; }
+    .section-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+
     html.js [data-reveal] { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity .7s ease, transform .7s ease; }
     html.js [data-reveal].visible { opacity: 1; transform: translate3d(0, 0, 0); }
 
@@ -512,6 +516,7 @@
     </section>
 
     <section class="intro" id="haqqimizda">
+      <canvas class="section-particles"></canvas>
       <div class="container intro-grid">
         <div class="photo-composition" data-reveal>
           <img src="assets/image4.png" alt="Caspian Motors Clinic texniki heyəti gəmi yanında" loading="lazy">
@@ -533,6 +538,7 @@
     </section>
 
     <section class="heritage" id="tarixce">
+      <canvas class="section-particles"></canvas>
       <div class="container">
         <div class="section-heading" data-reveal>
           <p class="eyebrow">2003-dən bu günə</p>
@@ -581,6 +587,7 @@
     </section>
 
     <section class="services" id="xidmetler">
+      <canvas class="section-particles"></canvas>
       <div class="container">
         <div class="section-top" data-reveal>
           <div class="section-heading">
@@ -618,6 +625,7 @@
     </section>
 
     <section class="principles">
+      <canvas class="section-particles"></canvas>
       <div class="container">
         <div class="section-heading" data-reveal>
           <p class="eyebrow">Şirkət siyasəti</p>
@@ -633,6 +641,7 @@
     </section>
 
     <section class="capabilities">
+      <canvas class="section-particles"></canvas>
       <div class="container capabilities-grid">
         <div class="capability-panel" data-reveal>
           <p class="eyebrow">Kompleks imkanlar</p>
@@ -667,6 +676,7 @@
     </section>
 
     <section class="process" id="proses">
+      <canvas class="section-particles"></canvas>
       <div class="container">
         <div class="section-heading" data-reveal>
           <p class="eyebrow">İş prosesimiz</p>
@@ -927,6 +937,126 @@
         heroSlides[currentSlide].classList.add('active');
       }, 5000);
     }
+
+    // React Bits Particle Canvas Effect (Subtle, 3D Distant Floating Dots for Light Sections)
+    function initSectionParticles() {
+      const canvases = document.querySelectorAll('.section-particles');
+      canvases.forEach(canvas => {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 120 };
+
+        function resize() {
+          const dpr = window.devicePixelRatio || 1;
+          width = canvas.parentElement.offsetWidth;
+          height = canvas.parentElement.offsetHeight;
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          canvas.style.width = width + 'px';
+          canvas.style.height = height + 'px';
+          ctx.scale(dpr, dpr);
+        }
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            
+            // Depth factor: 0.15 (very distant / far away) to 1.0 (closer)
+            this.depth = Math.random() * 0.85 + 0.15;
+            
+            // Tiny radius for distant dots (0.6px - 2.3px)
+            this.radius = this.depth * 1.7 + 0.6;
+            
+            // Subtle translucency (0.04 - 0.18) for distant appearance
+            this.alpha = this.depth * 0.14 + 0.04;
+            
+            const colors = [
+              `rgba(12, 95, 167, ${this.alpha})`,
+              `rgba(100, 116, 139, ${this.alpha * 0.95})`,
+              `rgba(6, 46, 90, ${this.alpha})`,
+              `rgba(96, 200, 232, ${this.alpha * 0.85})`
+            ];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Speed scaled by depth for 3D parallax effect
+            this.vx = (Math.random() - 0.5) * 0.22 * this.depth;
+            this.vy = (Math.random() - 0.5) * 0.22 * this.depth;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+
+            if (mouse.x !== null && mouse.y !== null) {
+              let dx = mouse.x - this.x;
+              let dy = mouse.y - this.y;
+              let dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < mouse.radius) {
+                let force = (mouse.radius - dist) / mouse.radius;
+                // Distant dots move less when mouse passes
+                this.x -= (dx / dist) * force * 1.2 * this.depth;
+                this.y -= (dy / dist) * force * 1.2 * this.depth;
+              }
+            }
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+          }
+        }
+
+        function init() {
+          resize();
+          particles = [];
+          // Optimal particle count for clean scattered background look
+          const count = Math.min(Math.floor((width * height) / 9000), 85);
+          for (let i = 0; i < count; i++) {
+            particles.push(new Particle());
+          }
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+
+          particles.forEach(p => {
+            p.update();
+            p.draw();
+          });
+
+          requestAnimationFrame(animate);
+        }
+
+        canvas.parentElement.addEventListener('mousemove', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+        });
+
+        canvas.parentElement.addEventListener('mouseleave', () => {
+          mouse.x = null;
+          mouse.y = null;
+        });
+
+        window.addEventListener('resize', () => {
+          resize();
+          init();
+        });
+
+        init();
+        animate();
+      });
+    }
+    initSectionParticles();
   </script>
 </body>
 </html>
