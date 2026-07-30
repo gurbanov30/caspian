@@ -945,7 +945,6 @@
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        let mouse = { x: null, y: null, radius: 120 };
 
         function resize() {
           const dpr = window.devicePixelRatio || 1;
@@ -993,18 +992,6 @@
             if (this.x > width) this.x = 0;
             if (this.y < 0) this.y = height;
             if (this.y > height) this.y = 0;
-
-            if (mouse.x !== null && mouse.y !== null) {
-              let dx = mouse.x - this.x;
-              let dy = mouse.y - this.y;
-              let dist = Math.sqrt(dx * dx + dy * dy);
-              if (dist < mouse.radius) {
-                let force = (mouse.radius - dist) / mouse.radius;
-                // Distant dots move less when mouse passes
-                this.x -= (dx / dist) * force * 1.2 * this.depth;
-                this.y -= (dy / dist) * force * 1.2 * this.depth;
-              }
-            }
           }
 
           draw() {
@@ -1040,17 +1027,6 @@
 
           requestAnimationFrame(animate);
         }
-
-        canvas.parentElement.addEventListener('mousemove', (e) => {
-          const rect = canvas.getBoundingClientRect();
-          mouse.x = e.clientX - rect.left;
-          mouse.y = e.clientY - rect.top;
-        });
-
-        canvas.parentElement.addEventListener('mouseleave', () => {
-          mouse.x = null;
-          mouse.y = null;
-        });
 
         window.addEventListener('resize', () => {
           resize();
