@@ -979,9 +979,9 @@
             ];
             this.color = colors[Math.floor(Math.random() * colors.length)];
             
-            // Speed scaled by depth for 3D parallax effect
-            this.vx = (Math.random() - 0.5) * 0.25 * this.depth;
-            this.vy = (Math.random() - 0.5) * 0.25 * this.depth;
+            // Slightly faster speed scaled by depth for dynamic floating effect
+            this.vx = (Math.random() - 0.5) * 0.55 * this.depth;
+            this.vy = (Math.random() - 0.5) * 0.55 * this.depth;
           }
 
           update() {
