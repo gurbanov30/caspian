@@ -1018,8 +1018,13 @@
         function init() {
           resize();
           particles = [];
-          // Optimal particle count for clean scattered background look
-          const count = Math.min(Math.floor((width * height) / 9000), 85);
+          
+          // Reduce dot density for sections following 'Xidmət istiqamətləri' (#xidmetler)
+          const isAfterServices = !!canvas.closest('.principles, .capabilities, .process');
+          const divisor = isAfterServices ? 22000 : 13000;
+          const maxCount = isAfterServices ? 30 : 52;
+          
+          const count = Math.min(Math.floor((width * height) / divisor), maxCount);
           for (let i = 0; i < count; i++) {
             particles.push(new Particle());
           }
