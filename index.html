@@ -963,26 +963,26 @@
             this.x = Math.random() * width;
             this.y = Math.random() * height;
             
-            // Depth factor: 0.15 (very distant / far away) to 1.0 (closer)
-            this.depth = Math.random() * 0.85 + 0.15;
+            // Depth factor: 0.2 to 1.0
+            this.depth = Math.random() * 0.8 + 0.2;
             
-            // Tiny radius for distant dots (0.6px - 2.3px)
-            this.radius = this.depth * 1.7 + 0.6;
+            // Visible radius range (1.4px - 3.4px) matching reference design
+            this.radius = this.depth * 2.2 + 1.2;
             
-            // Subtle translucency (0.04 - 0.18) for distant appearance
-            this.alpha = this.depth * 0.14 + 0.04;
+            // Clear opacity range (0.22 - 0.53) for visible floating background dots
+            this.alpha = this.depth * 0.35 + 0.18;
             
             const colors = [
               `rgba(12, 95, 167, ${this.alpha})`,
-              `rgba(100, 116, 139, ${this.alpha * 0.95})`,
-              `rgba(6, 46, 90, ${this.alpha})`,
-              `rgba(96, 200, 232, ${this.alpha * 0.85})`
+              `rgba(71, 85, 105, ${this.alpha})`,
+              `rgba(148, 163, 184, ${this.alpha * 1.1})`,
+              `rgba(6, 46, 90, ${this.alpha * 0.9})`
             ];
             this.color = colors[Math.floor(Math.random() * colors.length)];
             
             // Speed scaled by depth for 3D parallax effect
-            this.vx = (Math.random() - 0.5) * 0.22 * this.depth;
-            this.vy = (Math.random() - 0.5) * 0.22 * this.depth;
+            this.vx = (Math.random() - 0.5) * 0.25 * this.depth;
+            this.vy = (Math.random() - 0.5) * 0.25 * this.depth;
           }
 
           update() {
