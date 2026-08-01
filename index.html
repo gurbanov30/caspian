@@ -341,6 +341,75 @@
     .intro > .container, .heritage > .container, .services > .container, .principles > .container, .capabilities > .container, .process > .container { position: relative; z-index: 1; }
     .section-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
+    /* Live Pulse Glow Indicator */
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .live-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      background-color: #10b981;
+      border-radius: 50%;
+      margin-right: 7px;
+      vertical-align: middle;
+      animation: pulseGlow 2s infinite;
+    }
+
+    /* Service Category Filter Pills */
+    .service-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .filter-btn {
+      padding: 9px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--navy);
+      font-size: .84rem;
+      font-weight: 750;
+      cursor: pointer;
+      transition: all .25s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .filter-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(12, 95, 167, 0.12);
+    }
+    .filter-btn.active {
+      background: var(--navy);
+      color: #ffffff;
+      border-color: var(--navy);
+      box-shadow: 0 6px 18px rgba(3, 29, 59, 0.25);
+    }
+    .service-card {
+      transition: transform .4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .4s ease, opacity .35s ease, filter .35s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 45px rgba(3, 29, 59, 0.28);
+    }
+    .service-card.is-hidden {
+      display: none;
+    }
+
+    /* Glassmorphism & Micro-Interactions */
+    .heritage-card {
+      transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .35s ease, border-color .35s ease;
+    }
+    .heritage-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(4,37,76,.1);
+      border-top-color: var(--cyan);
+    }
+
     html.js [data-reveal] { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity .7s ease, transform .7s ease; }
     html.js [data-reveal].visible { opacity: 1; transform: translate3d(0, 0, 0); }
 
@@ -524,7 +593,7 @@
       <div class="container intro-grid">
         <div class="photo-composition" data-reveal>
           <img src="assets/image4.png" alt="Caspian Motors Clinic texniki heyəti gəmi yanında" loading="lazy">
-          <div class="photo-accent"><span class="year">2003</span><span>ildən peşəkar mühəndislik və təmir təcrübəsi</span></div>
+          <div class="photo-accent"><span class="year"><i class="live-dot"></i>2003</span><span>ildən peşəkar mühəndislik və təmir təcrübəsi</span></div>
         </div>
         <div class="split-copy" data-reveal>
           <p class="eyebrow">Şirkət profili</p>
@@ -599,28 +668,37 @@
             <h2>Gəminin hər sisteminə peşəkar qayğı.</h2>
           </div>
         </div>
+        <div class="service-filters" data-reveal>
+          <button type="button" class="filter-btn active" data-filter="all">Bütün Xidmətlər</button>
+          <button type="button" class="filter-btn" data-filter="engine">Mühərriklər</button>
+          <button type="button" class="filter-btn" data-filter="waterjet">Waterjet & Transmissiya</button>
+          <button type="button" class="filter-btn" data-filter="piping">Boru Xətləri & Klapanlar</button>
+          <button type="button" class="filter-btn" data-filter="hydraulics">Hidravlika</button>
+          <button type="button" class="filter-btn" data-filter="co2">Təhlükəsizlik & CO₂</button>
+          <button type="button" class="filter-btn" data-filter="hvac">Otomasyon & HVAC</button>
+        </div>
         <div class="service-grid">
-          <article class="service-card" data-reveal>
+          <article class="service-card" data-category="engine" data-reveal>
             <img src="assets/image10.png" alt="Gəmi mühərriki" loading="lazy">
             <div class="service-card-content"><span class="service-number">01 / Mühərriklər</span><h3>Baş Mühərriklər & Dizel-Generatorlar</h3><p>On-board və emalatxanada cari, orta və əsaslı təmir, sınaq və sazlama.</p></div>
           </article>
-          <article class="service-card" data-reveal>
+          <article class="service-card" data-category="waterjet" data-reveal>
             <img src="assets/image9.png" alt="Gəmi propulsiv sistemi" loading="lazy">
             <div class="service-card-content"><span class="service-number">02 / Waterjet & Transmissiya</span><h3>Waterjet & Reduktor Sistemləri</h3><p>Reduktor, val xətləri, Waterjet modernizasiyası və gücötürmə aqreqatlarının bərpası.</p></div>
           </article>
-          <article class="service-card" data-reveal>
+          <article class="service-card" data-category="piping" data-reveal>
             <img src="assets/image20.png" alt="Boru xətləri və klapanlar" loading="lazy">
             <div class="service-card-content"><span class="service-number">03 / Sistemlər & Klapanlar</span><h3>Boru Xətləri & Klapanlar</h3><p>Yanacaq, yağ, soyutma, ballast və çirkab su xətlərinin yenilənməsi.</p></div>
           </article>
-          <article class="service-card" data-reveal>
+          <article class="service-card" data-category="hydraulics" data-reveal>
             <img src="assets/image6.png" alt="Hidravlik sistemlər" loading="lazy">
             <div class="service-card-content"><span class="service-number">04 / Hidravlika</span><h3>Hidravlik Sistemlər & Yüksək Təzyiq</h3><p>Nasoslar, silindrlər, paylayıcı sistemlər və hidravlik yağ dəyişdirilməsi.</p></div>
           </article>
-          <article class="service-card" data-reveal>
+          <article class="service-card" data-category="co2" data-reveal>
             <img src="assets/image4.png" alt="CO2 yanğınsöndürmə" loading="lazy">
             <div class="service-card-content"><span class="service-number">05 / Təhlükəsizlik</span><h3>CO₂ Yanğınsöndürmə & Quick Closing Valve</h3><p>CO₂ balonları, boru xətləri və QCV mexanizmlərinin texniki baxışı.</p></div>
           </article>
-          <article class="service-card" data-reveal>
+          <article class="service-card" data-category="hvac" data-reveal>
             <img src="assets/image30.png" alt="Elektron idarəetmə" loading="lazy">
             <div class="service-card-content"><span class="service-number">06 / Otomasyon & HVAC</span><h3>Elektron İdarəetmə & İqlimləndirmə</h3><p>Sensor diaqnostikası, kompressorlar və freon sistemlərinin servisi.</p></div>
           </article>
@@ -673,7 +751,7 @@
         </div>
         <div class="safety-card" data-reveal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4.5 6v5.2c0 4.6 3.2 8.8 7.5 9.8 4.3-1 7.5-5.2 7.5-9.8V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
-          <h3>"Sıfır qəza" prinsipi</h3>
+          <h3><i class="live-dot"></i>"Sıfır qəza" prinsipi</h3>
           <p>Hər layihə risklərin qiymətləndirilməsi ilə başlayır. Mütəxəssislərimiz təhlükəsiz iş metodları, müntəzəm təlim və fərdi mühafizə vasitələri ilə ən yüksək HSE standartlarına riayət edir.</p>
         </div>
       </div>
@@ -834,6 +912,8 @@
     </div>
   </div>
 
+
+
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.site-nav');
@@ -942,13 +1022,48 @@
       }, 5000);
     }
 
-    // React Bits Particle Canvas Effect (Subtle, 3D Distant Floating Dots for Light Sections)
+    // Service Category Filter Tabs
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        serviceCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.classList.remove('is-hidden');
+            card.style.opacity = '1';
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+
+    // React Bits Particle Canvas Effect with Interactive Mesh Connections & Mouse Physics
     function initSectionParticles() {
       const canvases = document.querySelectorAll('.section-particles');
       canvases.forEach(canvas => {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
+        let mouseX = -1000, mouseY = -1000;
+
+        const parentSection = canvas.parentElement;
+        if (parentSection) {
+          parentSection.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+          });
+          parentSection.addEventListener('mouseleave', () => {
+            mouseX = -1000;
+            mouseY = -1000;
+          });
+        }
 
         function resize() {
           const dpr = window.devicePixelRatio || 1;
@@ -969,10 +1084,10 @@
             // Depth factor: 0.2 to 1.0
             this.depth = Math.random() * 0.8 + 0.2;
             
-            // Visible radius range (1.4px - 3.4px) matching reference design
+            // Visible radius range (1.4px - 3.4px)
             this.radius = this.depth * 2.2 + 1.2;
             
-            // Clear opacity range (0.22 - 0.53) for visible floating background dots
+            // Clear opacity range (0.22 - 0.53)
             this.alpha = this.depth * 0.35 + 0.18;
             
             const colors = [
@@ -983,12 +1098,21 @@
             ];
             this.color = colors[Math.floor(Math.random() * colors.length)];
             
-            // Slightly faster speed scaled by depth for dynamic floating effect
             this.vx = (Math.random() - 0.5) * 0.55 * this.depth;
             this.vy = (Math.random() - 0.5) * 0.55 * this.depth;
           }
 
           update() {
+            // Mouse push interactivity
+            const dx = this.x - mouseX;
+            const dy = this.y - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 90 && dist > 0) {
+              const force = (90 - dist) / 90;
+              this.x += (dx / dist) * force * 1.2;
+              this.y += (dy / dist) * force * 1.2;
+            }
+
             this.x += this.vx;
             this.y += this.vy;
 
@@ -1010,7 +1134,6 @@
           resize();
           particles = [];
           
-          // Reduce dot density for sections following 'Xidmət istiqamətləri' (#xidmetler)
           const isAfterServices = !!canvas.closest('.principles, .capabilities, .process');
           const divisor = isAfterServices ? 22000 : 13000;
           const maxCount = isAfterServices ? 30 : 52;
@@ -1023,6 +1146,23 @@
 
         function animate() {
           ctx.clearRect(0, 0, width, height);
+
+          // Draw mesh connection lines between close particles
+          for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 85) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(12, 95, 167, ${0.1 * (1 - dist / 85)})`;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+              }
+            }
+          }
 
           particles.forEach(p => {
             p.update();
@@ -1042,6 +1182,7 @@
       });
     }
     initSectionParticles();
+
   </script>
 </body>
 </html>
