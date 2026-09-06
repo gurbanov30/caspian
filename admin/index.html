@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071b3a">
+  <title>Admin Panel | Caspian Motors Clinic</title>
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+
+  <section id="login-view" class="login-view">
+    <div class="login-shell">
+      <div class="login-brand">
+        <img src="/assets/logo.png" alt="Caspian Motors Clinic">
+        <span>Admin workspace</span>
+      </div>
+      <div class="login-card">
+        <p class="eyebrow">Secure access</p>
+        <h1>İdarə panelinə xoş gəlmisiniz.</h1>
+        <p class="muted">Sayt məzmununu, media fayllarını və daxil olan sorğuları bir yerdən idarə edin.</p>
+        <form id="login-form" class="stack-form" method="post" action="/admin/login">
+          <label>E-poçt<input name="email" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
+          <label>Şifrə<input name="password" type="password" autocomplete="current-password" required placeholder="••••••••••••"></label>
+          <button class="primary-button" type="submit">Daxil ol <span aria-hidden="true">→</span></button>
+          <p id="login-error" class="form-error" role="alert"></p>
+        </form>
+      </div>
+      <p class="login-footnote">Caspian Motors Clinic · Marine Solutions</p>
+    </div>
+  </section>
+
+  <div id="app-view" class="app-view hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <img src="/assets/logo.png" alt="Caspian Motors Clinic">
+        <div><strong>Caspian Motors</strong><span>Admin workspace</span></div>
+      </div>
+      <nav class="side-nav" aria-label="Admin navigation">
+        <button class="nav-link active" data-view="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-link" data-view="content"><span>◈</span> Məzmun</button>
+        <button class="nav-link" data-view="media"><span>▧</span> Media</button>
+        <button class="nav-link" data-view="inquiries"><span>✉</span> Sorğular <b id="nav-unread">0</b></button>
+        <button id="users-nav" class="nav-link" data-view="users"><span>♙</span> Üzvlər</button>
+        <button class="nav-link" data-view="settings"><span>⚙</span> Tənzimləmələr</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="public-link" href="/" target="_blank" rel="noopener">↗ Sayta bax</a>
+        <button id="logout-button" class="logout-button">Çıxış</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button id="mobile-menu" class="mobile-menu" aria-label="Menyunu aç">☰</button>
+        <div><p class="topbar-kicker">Caspian Motors Clinic</p><h2 id="page-title">Dashboard</h2></div>
+        <div class="user-chip"><span class="user-dot"></span><span id="current-user">Admin</span></div>
+      </header>
+
+      <div class="content-area">
+        <section class="view active" data-view-panel="dashboard">
+          <div class="welcome-row"><div><p class="eyebrow">Overview</p><h1>İşlər necə gedir?</h1><p class="muted">Saytınızın canlı məzmunu və son fəaliyyətlər burada görünür.</p></div><a class="outline-button" href="/" target="_blank" rel="noopener">Canlı saytı aç ↗</a></div>
+          <div id="dashboard-cards" class="metric-grid"></div>
+          <div class="dashboard-grid"><div class="panel"><div class="panel-heading"><div><p class="eyebrow">Quick actions</p><h3>Tez keçidlər</h3></div></div><div class="quick-actions"><button data-go="content">Məzmunu redaktə et <span>→</span></button><button data-go="media">Yeni şəkil yüklə <span>→</span></button><button data-go="inquiries">Sorğulara bax <span>→</span></button></div></div><div class="panel accent-panel"><p class="eyebrow">System status</p><h3>Backend aktivdir</h3><p>SQLite database, secure sessions və REST API işlək vəziyyətdədir.</p><span class="status-pill"><i></i> Healthy</span></div></div>
+        </section>
+
+        <section class="view" data-view-panel="content">
+          <div class="section-header"><div><p class="eyebrow">Content manager</p><h1>Məzmun idarəetməsi</h1><p class="muted">Bölmə tənzimləmələrini və təkrarlanan kontent elementlərini redaktə edin.</p></div></div>
+          <div class="content-layout"><div class="panel settings-panel"><div class="panel-heading"><div><p class="eyebrow">Single sections</p><h3>Bölmə ayarları</h3></div></div><label class="field-label">Bölmə seçin<select id="setting-select"></select></label><textarea id="setting-editor" class="code-editor" spellcheck="false"></textarea><button id="save-setting" class="primary-button">Bölməni yadda saxla</button></div><div class="panel collection-panel"><div class="panel-heading collection-heading"><div><p class="eyebrow">Repeatable content</p><h3>Elementlər</h3></div><button id="new-item" class="small-primary">+ Yeni</button></div><label class="field-label">Kolleksiya<select id="collection-select"></select></label><div class="table-wrap"><table><thead><tr><th>Ad</th><th>Status</th><th>Sıra</th><th></th></tr></thead><tbody id="content-table"></tbody></table></div></div></div>
+        </section>
+
+        <section class="view" data-view-panel="media">
+          <div class="section-header"><div><p class="eyebrow">Media library</p><h1>Media kitabxanası</h1><p class="muted">Şəkilləri əlavə edin, yeniləyin və məzmundan istifadə olunmayan faylları silin.</p></div></div>
+          <div class="panel upload-panel"><form id="upload-form" class="upload-form"><label class="upload-drop"><input id="media-file" name="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml" required><span class="upload-icon">＋</span><strong>Şəkil seçin və ya buraya atın</strong><small>JPG, PNG, WEBP, GIF, SVG · maksimum 8 MB</small></label><label class="field-label">Alt mətn<input name="altText" type="text" placeholder="Şəkilin təsviri"></label><button class="primary-button" type="submit">Yüklə <span>↑</span></button></form></div><div id="media-grid" class="media-grid"></div>
+        </section>
+
+        <section class="view" data-view-panel="inquiries">
+          <div class="section-header"><div><p class="eyebrow">Inbox</p><h1>Texniki sorğular</h1><p class="muted">Saytdan gələn müraciətləri izləyin və statuslarını yeniləyin.</p></div><button id="refresh-inquiries" class="outline-button">Yenilə ↻</button></div>
+          <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Müraciət edən</th><th>Xidmət</th><th>Əlaqə</th><th>Tarix</th><th>Status</th><th></th></tr></thead><tbody id="inquiries-table"></tbody></table></div></div>
+        </section>
+
+        <section class="view" data-view-panel="users">
+          <div class="section-header"><div><p class="eyebrow">Access control</p><h1>Admin üzvləri</h1><p class="muted">Yeni admin hesabları yaradın, rolları və giriş icazələrini idarə edin.</p></div><button id="new-user" class="primary-button">+ Yeni üzv</button></div>
+          <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Üzv</th><th>Rol</th><th>Status</th><th>Yaradılıb</th><th></th></tr></thead><tbody id="users-table"></tbody></table></div></div>
+        </section>
+
+        <section class="view" data-view-panel="settings">
+          <div class="section-header"><div><p class="eyebrow">Account</p><h1>Tənzimləmələr</h1><p class="muted">Admin hesabınızın giriş təhlükəsizliyini idarə edin.</p></div></div>
+          <div class="panel password-panel"><p class="eyebrow">Security</p><h3>Şifrəni dəyiş</h3><form id="password-form" class="stack-form compact-form"><label>Cari şifrə<input name="currentPassword" type="password" required></label><label>Yeni şifrə<input name="nextPassword" type="password" minlength="12" required><small>Minimum 12 simvol.</small></label><button class="primary-button" type="submit">Şifrəni yenilə</button><p id="password-message" class="form-message"></p></form></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="item-dialog" class="item-dialog"><form method="dialog" id="item-form"><div class="dialog-heading"><div><p class="eyebrow">Content item</p><h3 id="dialog-title">Yeni element</h3></div><button value="cancel" class="dialog-close" aria-label="Bağla">×</button></div><input type="hidden" name="id"><div class="dialog-grid"><label>Collection<input name="collection" required pattern="[a-z0-9_-]+"></label><label>Slug<input name="slug" required pattern="[a-z0-9_-]+"></label><label>Position<input name="position" type="number" min="0" value="0" required></label><label>Status<select name="status"><option value="published">Published</option><option value="draft">Draft</option></select></label></div><label>Data JSON<textarea name="data" class="code-editor large" spellcheck="false" required></textarea></label><div class="dialog-actions"><button value="cancel" class="outline-button">Ləğv et</button><button id="save-item" value="default" class="primary-button">Yadda saxla</button></div><p id="item-error" class="form-error"></p></form></dialog>
+  <dialog id="user-dialog" class="item-dialog user-dialog"><form method="dialog" id="user-form"><div class="dialog-heading"><div><p class="eyebrow">Team access</p><h3>Yeni admin üzvü</h3></div><button value="cancel" class="dialog-close" aria-label="Bağla">×</button></div><div class="stack-form compact-form"><label>E-poçt<input name="email" type="email" autocomplete="email" required placeholder="user@example.com"></label><label>İlkin şifrə<input name="password" type="password" autocomplete="new-password" minlength="12" required placeholder="Minimum 12 simvol"></label><label>Rol<select name="role"><option value="admin">Admin</option><option value="super_admin">Super admin</option></select></label></div><div class="dialog-actions"><button value="cancel" class="outline-button">Ləğv et</button><button value="default" class="primary-button">Üzvü yarat</button></div><p id="user-error" class="form-error"></p></form></dialog>
+  <dialog id="user-password-dialog" class="item-dialog user-dialog"><form method="dialog" id="user-password-form"><div class="dialog-heading"><div><p class="eyebrow">Password reset</p><h3>Şifrəni yenilə</h3></div><button value="cancel" class="dialog-close" aria-label="Bağla">×</button></div><input type="hidden" name="id"><div class="stack-form compact-form"><label>Yeni şifrə<input name="password" type="password" autocomplete="new-password" minlength="12" required placeholder="Minimum 12 simvol"></label></div><div class="dialog-actions"><button value="cancel" class="outline-button">Ləğv et</button><button value="default" class="primary-button">Şifrəni yenilə</button></div><p id="user-password-error" class="form-error"></p></form></dialog>
+  <script>
+    if (new URLSearchParams(window.location.search).get('login') === 'failed') {
+      document.getElementById('login-error').textContent = 'Email və ya şifrə yanlışdır.';
+    }
+  </script>
+  <script type="module" src="/admin/admin.js"></script>
+</body>
+</html>
